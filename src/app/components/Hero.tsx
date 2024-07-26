@@ -23,24 +23,26 @@ export default function Hero() {
 
   return (
     // <div className="w-screen">
-    <HeroHighlight className="flex justify-center items-center p-[10vw]">
-      <motion.h1
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-        animate={{
-          opacity: 1,
-          y: [20, -5, 0],
-        }}
-        transition={{
-          duration: 0.5,
-          ease: [0.4, 0.0, 0.2, 1],
-        }}
-        className="text-2xl px-4 md:text-3xl lg:text-4xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto"
-      >
-        Hi, I'm <FlipWords words={words} />
-      </motion.h1>
+    <HeroHighlight className="flex items-center justify-center p-[10vw]">
+      <div className="hi there">
+        <motion.h1
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: [20, -5, 0],
+          }}
+          transition={{
+            duration: 0.5,
+            ease: [0.4, 0.0, 0.2, 1],
+          }}
+          className="mx-auto max-w-4xl px-4 text-center text-2xl font-bold leading-relaxed text-neutral-700 dark:text-white md:text-3xl lg:text-4xl lg:leading-snug"
+        >
+          Hi, I'm <FlipWords words={words} />
+        </motion.h1>
+      </div>
       {/* <h1 className="bg-gradient-text text-transparent bg-clip-text">
         This is a test
       </h1> */}
