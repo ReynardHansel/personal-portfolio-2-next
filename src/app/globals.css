@@ -2,6 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .magicpattern {
+  z-index: -10;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3ClinearGradient id=%22b%22 gradientTransform=%22rotate(90 .5 .5)%22%3E%3Cstop offset=%220%25%22 stop-color=%22%2321D4FD%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23b721ff%22%2F%3E%3C%2FlinearGradient%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M932 644q-35 144-173.5 185t-254 26.5Q389 841 282.5 788T170 617.5q-6-117.5 26.5-216t106-191Q376 118 506 99.5T713 185q77 104 165.5 209.5T932 644Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22url(%23b)%22 d=%22M932 644q-35 144-173.5 185t-254 26.5Q389 841 282.5 788T170 617.5q-6-117.5 26.5-216t106-191Q376 118 506 99.5T713 185q77 104 165.5 209.5T932 644Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+} */
+
+.blob {
+  /* position: relative; */
+  border: 1px solid transparent;
+  border-radius: 30% 70% 37% 63% / 55% 60% 40% 45%;
+  /* 65% 35% 36% 64% / 33% 24% 76% 67%  */
+  background: linear-gradient(to top, #732dd9, #c92dd9, #d92d93);
+}
+
+.bg-gradient-text-manual {
+  background-image: linear-gradient(
+    90deg,
+    #816ed8 0%,
+    #7568dd 19%,
+    #565ed3 38%,
+    #559cdf 62%,
+    #6fc0ac 81%,
+    #70cea8 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+/* .blob::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  background: linear-gradient(to top, #732dd9, #c92dd9, #d92d93);
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+} */
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
