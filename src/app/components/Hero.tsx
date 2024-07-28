@@ -71,16 +71,21 @@ export default function Hero() {
           functionality to create exceptional user experiences"
         </motion.p>
 
-        <div className="group/hero_cta relative z-0 ml-2 w-fit">
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, delay: 1, ease: "easeIn" }}
+          className="group/hero_cta relative z-0 ml-2 w-fit"
+        >
           <div className="absolute -z-10 h-full w-full rounded-full bg-gradient-to-r from-[#5060F0] to-[#6E7AEA] opacity-0 transition-all duration-200 group-hover/hero_cta:opacity-100"></div>
           <Button
             variant="none"
             size="lg"
-            className="text-porto_purple border-porto_purple rounded-full border-2 bg-transparent px-5 py-5 font-semibold tracking-wide transition-all duration-200 group-hover/hero_cta:text-white md:text-xl"
+            className="rounded-full border-2 border-porto_purple bg-transparent px-5 py-5 font-semibold tracking-wide text-porto_purple transition-all duration-200 group-hover/hero_cta:text-white md:text-xl"
           >
             Contact Me
           </Button>
-        </div>
+        </motion.div>
 
         {/* <motion.button
           className="text-porto_purple border-porto_purple ml-2 rounded-full border-2 bg-transparent bg-gradient-to-r px-5 py-3 font-semibold tracking-wide transition-all duration-200 hover:from-[#5060F0] hover:to-[#6E7AEA] hover:text-white md:text-xl"
