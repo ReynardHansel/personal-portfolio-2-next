@@ -1,0 +1,21 @@
+.clip-section {
+  /* border: 1px solid red; */
+  /* clip-path: path(
+    "M520.923 362.896C431.244 575.727 -58.0639 650.743 6.49671 414.227C59.2165 221.09 -43.0189 92.7085 77.4966 13.7272C165.997 -44.2726 247.191 110.163 378.802 175.244C408.996 196.227 587.115 205.805 520.923 362.896Z"
+  ); */
+  border-radius: 100% 0% 73% 27% / 0% 50% 50% 100%;
+}
+
+
+.image-container {
+  background-image: linear-gradient(
+    -244deg,
+    #816ed8,
+    #7568dd,
+    #565ed3,
+    #559cdf,
+    #6fc0ac,
+    #70cea8
+  );
+  /* background-image: url(/public/svg/hero/elipse1.svg); */
+}
