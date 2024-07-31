@@ -1,22 +1,52 @@
 import profileImage from "public/images/bw-cool.png";
-import testImage from "public/images/test.jpg";
-import blob1 from "public/svg/hero/elipse1.svg";
+// import testImage from "public/images/test.jpg";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import "./clip_heroImage.css";
 import BlobBackground from "./BlobBackground";
 
+const imgVariants = {
+  hidden: {
+    opacity: 0,
+    y: "50%",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 2.4,
+      duration: 1.5,
+      ease: [0.23,1,0.32,1],
+      // ease: "easeInOut",
+    },
+  },
+};
+
 export default function HeroImage() {
   return (
-      <div id="outer" className="relative left-6 top-12">
-        <BlobBackground />
-        <div id="inner" className="relative clip-section overflow-hidden pt-14 bottom-[.96rem]">
+    <div
+      id="container"
+      className="relative left-6 lg:top-12 hidden overflow-visible sm:block"
+    >
+      <BlobBackground />
+      <div
+        id="clipper"
+        className="clip-section bottom-[.15rem] overflow-hidden pt-4 md:bottom-[.05rem] lg:bottom-0"
+      >
+        <motion.div
+          variants={imgVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative"
+        >
           <Image
             src={profileImage}
             alt="Profile Image"
             className="relative scale-125"
             // style={{ clipPath: "url(#clip1)" }}
           ></Image>
-        </div>
+        </motion.div>
       </div>
+    </div>
   );
 }

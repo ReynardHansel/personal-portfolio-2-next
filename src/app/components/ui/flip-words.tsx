@@ -70,22 +70,23 @@ export const FlipWords = ({
         )}
         key={currentWord.text}
       >
-        {currentWord.text.split("").map((letter, index) => (
-          <motion.span
-            key={currentWord.text + index}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: index * 0.08,
-              duration: 0.4,
-            }}
-            className={cn(
-              "inline-block",
-              currentWord.className // Apply the className from the current word
-            )}
-          >
-            {letter === " " ? "\u00A0" : letter}
-          </motion.span>
+        {currentWord.text.split(" ").map((word, index) => (
+          <React.Fragment key={currentWord.text + index}>
+            <motion.p
+              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{
+                delay: index * 0.15,
+                duration: 0.4,
+              }}
+              className={cn(
+                "inline-block",
+                currentWord.className // Apply the className from the current word
+              )}
+            >
+              {word}
+            </motion.p><span>&nbsp;</span>
+          </React.Fragment>
         ))}
       </motion.div>
     </AnimatePresence>

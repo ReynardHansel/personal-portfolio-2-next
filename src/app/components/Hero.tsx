@@ -5,7 +5,7 @@ import HeroText from "./Hero/HeroText";
 
 export default function Hero() {
   return (
-    <HeroHighlight className="flex max-w-[80vw] items-center justify-center">
+    <HeroHighlight className="flex max-w-[80vw] items-center justify-center py-[10vh]">
       {/* TEXT */}
       <HeroText />
 
