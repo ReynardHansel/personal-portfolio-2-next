@@ -16,8 +16,15 @@ const imgVariants = {
     transition: {
       delay: 2.4,
       duration: 1.5,
-      ease: [0.23,1,0.32,1],
+      ease: [0.23, 1, 0.32, 1],
       // ease: "easeInOut",
+    },
+  },
+  hover: {
+    scale: 1.05,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
     },
   },
 };
@@ -26,7 +33,7 @@ export default function HeroImage() {
   return (
     <div
       id="container"
-      className="relative left-6 lg:top-12 hidden overflow-visible sm:block"
+      className="relative left-6 hidden overflow-visible sm:block lg:top-12"
     >
       <BlobBackground />
       <div
@@ -38,11 +45,12 @@ export default function HeroImage() {
           initial="hidden"
           animate="visible"
           className="relative"
+          whileHover="hover"
         >
           <Image
             src={profileImage}
             alt="Profile Image"
-            className="relative scale-125"
+            className="pointer-events-none relative scale-[118%]"
             // style={{ clipPath: "url(#clip1)" }}
           ></Image>
         </motion.div>
