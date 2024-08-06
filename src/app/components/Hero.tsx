@@ -2,15 +2,21 @@
 import { HeroHighlight } from "./ui/hero-highlight";
 import HeroImage from "./Hero/HeroImage";
 import HeroText from "./Hero/HeroText";
+import Navbar from "./Navbar";
 
 export default function Hero() {
   return (
-    <HeroHighlight className="flex max-w-[80vw] items-center justify-center py-[10vh]">
-      {/* TEXT */}
-      <HeroText />
+    <HeroHighlight className="flex flex-col max-w-[80vw] items-center justify-center">
+      {/* NAVBAR */}
+      <Navbar />
 
-      {/* IMAGE */}
-      <HeroImage />
+      <div className="flex">
+        {/* TEXT */}
+        <HeroText />
+
+        {/* IMAGE */}
+        <HeroImage />
+      </div>
     </HeroHighlight>
   );
 }

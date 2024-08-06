@@ -58,7 +58,7 @@ export default function HeroText() {
 
       <motion.p
         variants={childVariants}
-        className="text-center text-lg tracking-wider text-neutral-600 dark:text-neutral-400 sm:text-left md:text-lg lg:text-xl"
+        className="text-center font-plus-jakarta-sans text-lg tracking-wider text-neutral-600 dark:text-neutral-400 sm:text-left md:text-lg lg:text-xl"
       >
         "A software engineer specializing on Front-End Web Development, who
         loves to bridge the gap between beautiful design and seamless

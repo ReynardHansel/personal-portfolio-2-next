@@ -33,7 +33,7 @@ export default function HeroImage() {
   return (
     <div
       id="container"
-      className="relative left-6 hidden overflow-visible sm:block lg:top-12"
+      className="relative left-6 hidden overflow-visible sm:flex items-center justify-center lg:top-12"
     >
       <BlobBackground />
       <div

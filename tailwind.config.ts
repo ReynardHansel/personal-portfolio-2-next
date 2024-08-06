@@ -89,6 +89,7 @@ const config: Config = {
       },
       fontFamily: {
         "plus-jakarta-sans": ["Plus Jakarta Sans", "sans-serif"],
+        "nunito-sans": ["Nunito Sans", "sans-serif"],
       },
     },
   },
