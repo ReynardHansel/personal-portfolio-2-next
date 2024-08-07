@@ -38,12 +38,12 @@ export default function Title({ children }: { children: string }) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex overflow-hidden"
+      className="flex w-fit overflow-hidden"
     >
       <div className="mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2"></div>
       <motion.p
         variants={textVariants}
-        className="font-plus-jakarta-sans text-4xl font-bold text-porto_purple lg:text-5xl"
+        className="font-plus-jakarta-sans text-3xl font-bold text-porto_purple lg:text-4xl"
       >
         {children}
       </motion.p>
