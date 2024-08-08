@@ -1,19 +1,51 @@
-import { FaGithub } from "react-icons/fa";
+"use client";
+
+import { motion } from "framer-motion";
+// import { FaGithub } from "react-icons/fa";
 import Title from "../Reusable/Title";
 import { LinkPreview } from "../ui/link-preview";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+
+const containerVariants = {
+  visible: {
+    transition: {
+      staggerChildren: 0.5,
+    },
+  },
+};
+
+const textVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.4, 0.0, 0.2, 1],
+    },
+  },
+};
 
 export default function AboutText() {
   return (
-    <div className="flex flex-col gap-5 text-lg tracking-wide">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ margin: "-200px", once: true }}
+      className="flex w-[55%] flex-col gap-5 tracking-wide lg:text-[1.08rem]"
+    >
       <Title>About Me</Title>
-      <p>
+      <motion.p variants={textVariants}>
         Hi! I'm Reynard, an undergraduate student at BINUS University with a
         passion for Web and Software Development, specializing in Front-End Web
         Development. My goal? Crafting apps with a pleasing experience that make
         users go, "Whoa!"
-      </p>
-      <p>
+      </motion.p>
+      <motion.p variants={textVariants}>
         With 3+ years of experience, I've built sleek, responsive interfaces
         using my favorite tools like{" "}
         <LinkPreview
@@ -51,14 +83,14 @@ export default function AboutText() {
           T3 Stack
         </LinkPreview>
         , etc.
-      </p>
-      <p>
-        When I'm not coding, I'm usually working on team projects or looking for
-        new tools to upgrade my output (I LOVE finding out awesome tools that I
-        end up using btw).
-      </p>
+      </motion.p>
+      <motion.p variants={textVariants}>
+        When I'm not coding, I'm usually working on team projects, YouTube-ing
+        new techs and tech updates, or looking for new tools to upgrade my
+        output. Scroll down a little bit more for my GitHub and projects :D!
+      </motion.p>
 
-      <div>
+      {/* <div>
         <p>
           Here's my github if you'd like to check out some of my projects:{" "}
           <LinkPreview
@@ -70,10 +102,10 @@ export default function AboutText() {
             </Button>
           </LinkPreview>
         </p>
-        {/* <Button variant="ghost" className="flex gap-2 -ml-2">
+        <Button variant="ghost" className="flex gap-2 -ml-2">
           <FaGithub className="inline scale-125" /> Reynard Hansel
-        </Button> */}
-      </div>
-    </div>
+        </Button>
+      </div> */}
+    </motion.div>
   );
 }

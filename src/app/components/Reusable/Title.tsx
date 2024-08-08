@@ -37,7 +37,8 @@ export default function Title({ children }: { children: string }) {
     <motion.div
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true }}
       className="flex w-fit overflow-hidden"
     >
       <div className="mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2"></div>
