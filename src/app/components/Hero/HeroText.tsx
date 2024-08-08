@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FlipWords } from "../ui/flip-words";
 import { Button } from "@/components/ui/button";
+import ButtonGradient from "../Reusable/ButtonGradient";
 
 // Define the variants
 const containerVariants = {
@@ -65,21 +66,7 @@ export default function HeroText() {
         functionality to create exceptional user experiences"
       </motion.p>
 
-      <motion.div
-        initial={{ opacity: 0, x: -40 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 1.4, ease: "easeIn" }}
-        className="group/hero_cta relative z-0 ml-2 mt-4 w-fit sm:mt-2"
-      >
-        <div className="absolute -z-10 h-full w-full rounded-full bg-gradient-to-r from-[#5060F0] to-[#6E7AEA] opacity-0 transition-all duration-200 group-hover/hero_cta:opacity-100"></div>
-        <Button
-          variant="none"
-          size="lg"
-          className="rounded-full border-2 border-porto_purple bg-transparent px-5 py-5 text-xl font-semibold tracking-wide text-porto_purple transition-all duration-200 group-hover/hero_cta:text-white"
-        >
-          Contact Me
-        </Button>
-      </motion.div>
+      <ButtonGradient>Contact Me</ButtonGradient>
 
       {/* <motion.button
           className="text-porto_purple border-porto_purple ml-2 rounded-full border-2 bg-transparent bg-gradient-to-r px-5 py-3 font-semibold tracking-wide transition-all duration-200 hover:from-[#5060F0] hover:to-[#6E7AEA] hover:text-white md:text-xl"
