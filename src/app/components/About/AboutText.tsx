@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 // import { FaGithub } from "react-icons/fa";
 import Title from "../Reusable/Title";
 import { LinkPreview } from "../ui/link-preview";
+import ButtonGradient from "../Reusable/ButtonGradient";
 // import { Button } from "@/components/ui/button";
 
 const containerVariants = {
@@ -36,7 +37,7 @@ export default function AboutText() {
       initial="hidden"
       whileInView="visible"
       viewport={{ margin: "-200px", once: true }}
-      className="flex w-[55%] flex-col gap-5 tracking-wide lg:text-[1.08rem]"
+      className="flex w-[55%] flex-col gap-6 tracking-wide lg:text-[1.08rem]"
     >
       <Title>About Me</Title>
       <motion.p variants={textVariants}>
@@ -106,6 +107,8 @@ export default function AboutText() {
           <FaGithub className="inline scale-125" /> Reynard Hansel
         </Button>
       </div> */}
+
+      <ButtonGradient><a href="#">CV Download</a></ButtonGradient>
     </motion.div>
   );
 }

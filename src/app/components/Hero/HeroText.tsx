@@ -66,7 +66,7 @@ export default function HeroText() {
         functionality to create exceptional user experiences"
       </motion.p>
 
-      <ButtonGradient>Contact Me</ButtonGradient>
+      <ButtonGradient className="ml-2">Contact Me</ButtonGradient>
 
       {/* <motion.button
           className="text-porto_purple border-porto_purple ml-2 rounded-full border-2 bg-transparent bg-gradient-to-r px-5 py-3 font-semibold tracking-wide transition-all duration-200 hover:from-[#5060F0] hover:to-[#6E7AEA] hover:text-white md:text-xl"
