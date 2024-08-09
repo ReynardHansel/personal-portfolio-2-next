@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { cn } from "lib/utils";
 import profileImage from "public/images/bw-stand.png";
 import "./clip_aboutImage.css";
 
@@ -59,14 +60,14 @@ const imgVariants = {
   },
 };
 
-export default function AboutImage() {
+export default function AboutImage({className}: {className?: string}) {
   return (
     <motion.div
       variants={blobVariants}
       initial="hidden"
       whileInView="visible"
       whileHover="hover"
-      className="blob-border grid h-[31vw] w-[31vw] place-items-center overflow-hidden"
+      className={cn("blob-border grid h-[31vw] w-[31vw] place-items-center overflow-hidden", className)}
     >
       <motion.div id="clipper" variants={imgVariants} className="w-[80%]">
         <Image src={profileImage} className="" alt="" />

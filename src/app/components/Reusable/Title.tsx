@@ -1,5 +1,7 @@
 "use client"; //? For some reason I don't understand why this one needs to be a client component
 import { motion } from "framer-motion";
+import { cn } from "lib/utils";
+import React from "react";
 // import { ReactNode } from "react";
 
 const containerVariants = {
@@ -28,26 +30,27 @@ const textVariants = {
   },
 };
 
-// interface TitleProps {
-//   children: string;
-// }
+type TitleProps = {
+  children: React.ReactNode;
+  className?: string;
+}
 
-export default function Title({ children }: { children: string }) {
+export default function Title({ children, className }: TitleProps) {
   return (
     <motion.div
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="flex w-fit overflow-hidden"
+      className={cn("flex w-fit overflow-hidden", className)}
     >
       <div className="mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2"></div>
-      <motion.p
+      <motion.div
         variants={textVariants}
         className="font-plus-jakarta-sans text-3xl font-bold text-porto_purple lg:text-4xl"
       >
         {children}
-      </motion.p>
+      </motion.div>
     </motion.div>
   );
 }

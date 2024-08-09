@@ -12,9 +12,9 @@ export default function About() {
         alt=""
         className="absolute -left-56 -top-14 hidden lg:block"
       />
-      <div className="flex max-w-[75vw] grid-cols-2 gap-[5vw]">
+      <div className="flex max-w-[80vw] grid-cols-2 flex-col gap-[5vw] lg:max-w-[75vw] md:flex-row">
         {/* IMAGE */}
-        <AboutImage />
+        <AboutImage className="hidden md:grid" />
 
         {/* TEXT */}
         <AboutText />
@@ -29,3 +29,6 @@ export default function About() {
     </div>
   );
 }
+
+//* NOTE:
+//* Breakpoint: md

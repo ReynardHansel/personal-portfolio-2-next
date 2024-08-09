@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import Title from "../Reusable/Title";
 import { LinkPreview } from "../ui/link-preview";
 import ButtonGradient from "../Reusable/ButtonGradient";
+import AboutImage from "./AboutImage";
 // import { Button } from "@/components/ui/button";
 
 const containerVariants = {
   visible: {
     transition: {
-      staggerChildren: 0.5,
+      staggerChildren: .7,
     },
   },
 };
@@ -36,10 +37,18 @@ export default function AboutText() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ margin: "-200px", once: true }}
-      className="flex w-[55%] flex-col gap-6 tracking-wide lg:text-[1.08rem]"
+      animate="animate"
+      viewport={{ margin: "-150px", once: true }}
+      className="relative flex flex-col gap-6 tracking-wide md:w-[55%] lg:text-[1.08rem]"
     >
-      <Title>About Me</Title>
+      {/* MOBILE div */}
+      <div className="flex justify-between md:hidden">
+        <Title>
+          <p>About Me</p>
+        </Title>
+      </div>
+
+      <Title className="hidden md:flex">About Me</Title>
       <motion.p variants={textVariants}>
         Hi! I'm Reynard, an undergraduate student at BINUS University with a
         passion for Web and Software Development, specializing in Front-End Web
@@ -108,7 +117,9 @@ export default function AboutText() {
         </Button>
       </div> */}
 
-      <ButtonGradient><a href="#">CV Download</a></ButtonGradient>
+      <ButtonGradient>
+        <a href="#">CV Download</a>
+      </ButtonGradient>
     </motion.div>
   );
 }
