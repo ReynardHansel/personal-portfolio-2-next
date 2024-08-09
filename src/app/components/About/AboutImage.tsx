@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import profileImage from "public/images/bw-stand.png";
 import "./clip_aboutImage.css";
 
-const blobVariants = {
+const blobVariants: Variants = {
   hidden: {
     scale: 0,
     backgroundSize: "100%",
