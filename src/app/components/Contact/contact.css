@@ -1,7 +1,7 @@
 .bg-linear {
     background: linear-gradient(90deg, #7568DD 9.63%, #559CDF 46.53%, #70CEA8 94.45%), #303738;
-    /* background-size: 300%; */
-    /* animation: moveGradient 10s ease-in-out infinite alternate; */
+    background-size: 300%;
+    animation: moveGradient 10s ease-in-out infinite alternate;
 }
 
 @keyframes moveGradient {
