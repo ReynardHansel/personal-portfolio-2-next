@@ -5,12 +5,12 @@
 /** Font Imports: */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-.box-shadow-fade {
+/* .box-shadow-fade {
   box-shadow: 
-    0 15px 15px -15px white, /* Top fade */
-    0 -15px 15px -15px white; /* Bottom fade */
-  pointer-events: none; /* Ensure it doesn't block interactions */
-}
+    0 15px 15px -15px white,
+    0 -15px 15px -15px white;
+  pointer-events: none;
+} */
 
 @layer base {
   :root {

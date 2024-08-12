@@ -5,7 +5,7 @@ export default function UnderDevelopment() {
         This page is still under development. Please stay tuned for the complete
         version :D
       </h1>
-      <div className="box-shadow-fade absolute inset-0"></div>
+      <div className="absolute inset-0"></div>
     </div>
   );
 }
