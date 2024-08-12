@@ -24,10 +24,10 @@ export default function Contact() {
       </p>
 
       {/* LINKS */}
-      <div className="flex w-full flex-wrap items-center justify-between gap-2 px-[10vw] pt-[5vh]">
+      <div className="flex w-full flex-wrap items-center justify-between gap-4 px-[10vw] pt-[5vh]">
         <a
           href="#"
-          className="flex flex-col items-center gap-1 transition-all duration-300 hover:scale-110"
+          className="flex flex-col flex-grow items-center gap-1 transition-all duration-300 hover:scale-110"
         >
           <MaterialSymbolsMail className="w-8 fill-broken_white" />
           <p className="hidden text-sm font-bold sm:block">
@@ -36,28 +36,28 @@ export default function Contact() {
         </a>
         <a
           href="#"
-          className="flex flex-col items-center gap-1 transition-all duration-300 hover:scale-110"
+          className="flex flex-col flex-grow items-center gap-1 transition-all duration-300 hover:scale-110"
         >
           <RiWhatsappFill className="w-8 fill-broken_white" />
           <p className="hidden text-sm font-bold sm:block">0813-2003-6888</p>
         </a>
         <a
           href="#"
-          className="flex flex-col items-center gap-1 transition-all duration-300 hover:scale-110"
+          className="flex flex-col flex-grow items-center gap-1 transition-all duration-300 hover:scale-110"
         >
           <MdiLinkedin className="w-8 fill-broken_white" />
           <p className="hidden text-sm font-bold sm:block">Reynard Hansel</p>
         </a>
         <a
           href="#"
-          className="flex flex-col items-center gap-1 transition-all duration-300 hover:scale-110"
+          className="flex flex-col flex-grow items-center gap-1 transition-all duration-300 hover:scale-110"
         >
           <RiInstagramFill className="w-8 fill-broken_white" />
           <p className="hidden text-sm font-bold sm:block">reynardhansel</p>
         </a>
         <a
           href="#"
-          className="flex flex-col items-center gap-1 transition-all duration-300 hover:scale-110"
+          className="flex flex-col flex-grow items-center gap-1 transition-all duration-300 hover:scale-110"
         >
           <MdiGithub className="w-8 fill-broken_white" />
           <p className="hidden text-sm font-bold sm:block">ReynardHansel</p>
