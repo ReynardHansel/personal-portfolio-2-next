@@ -33,9 +33,11 @@ const textVariants = {
 type TitleProps = {
   children: React.ReactNode;
   className?: string;
+  blockClassName?: string;
+  textClassName?: string;
 }
 
-export default function Title({ children, className }: TitleProps) {
+export default function Title({ children, className, blockClassName, textClassName }: TitleProps) {
   return (
     <motion.div
       variants={containerVariants}
@@ -44,10 +46,10 @@ export default function Title({ children, className }: TitleProps) {
       viewport={{ once: true }}
       className={cn("flex w-fit overflow-hidden", className)}
     >
-      <div className="mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2"></div>
+      <div className={cn("mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2", blockClassName)}></div>
       <motion.div
         variants={textVariants}
-        className="font-plus-jakarta-sans text-3xl font-bold text-porto_purple lg:text-4xl"
+        className={cn("font-plus-jakarta-sans text-3xl font-bold text-porto_purple lg:text-4xl", textClassName)}
       >
         {children}
       </motion.div>

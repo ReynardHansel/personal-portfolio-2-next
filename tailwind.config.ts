@@ -27,6 +27,7 @@ const config: Config = {
     extend: {
       colors: {
         porto_purple: "#5060F0",
+        broken_white: "#F2FCFD",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
