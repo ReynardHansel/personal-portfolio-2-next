@@ -8,7 +8,7 @@ import { MdiGithub } from "public/svg/GitHub";
 
 export default function Contact() {
   return (
-    <div className="bg-linear my-[10vh] flex flex-col items-center justify-center gap-[5vh] py-[10vh] text-broken_white lg:min-h-[80vh]">
+    <div className="bg-linear mt-[10vh] flex flex-col items-center justify-center gap-[5vh] py-[10vh] text-broken_white lg:min-h-[80vh]">
       <Title
         blockClassName="bg-broken_white"
         textClassName="text-broken_white font-nunito-sans tracking-wide"
