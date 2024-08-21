@@ -29,7 +29,7 @@ const skills2 = [
 
 export default function Skillset() {
   return (
-    <div className="my-[10vh] flex flex-col items-center justify-center gap-[6vh]">
+    <div className="my-[15vh] flex flex-col items-center justify-center gap-[6vh]">
       <Title>Skill Set</Title>
       <p className="px-[10vw] text-center font-plus-jakarta-sans tracking-wider md:px-[15vw] lg:px-[15vw] lg:text-lg">
         Over the years, I've gathered a toolkit of skills that help me deliver
@@ -41,10 +41,10 @@ export default function Skillset() {
       <div className="flex flex-col ">
         <InfiniteMovingCards
           speed="normal"
-          direction="right"
+          direction="left"
           skills={skills1}
         />
-        <InfiniteMovingCards speed="normal" direction="left" skills={skills2} />
+        <InfiniteMovingCards speed="normal" direction="right" skills={skills2} />
       </div>
     </div>
   );
