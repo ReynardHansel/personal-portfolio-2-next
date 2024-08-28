@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { SwipeCarousel } from "./SwipeCarousel";
 
 export const StickyScroll = ({
   content,
@@ -65,7 +64,7 @@ export const StickyScroll = ({
     <div className="flex flex-col items-center">
       {/* CONTENT */}
       <div
-        style={{ background: backgroundGradient }}
+        // style={{ background: backgroundGradient }}
         className={cn(
           "sticky top-10 h-[25vh] w-[85%] sm:w-[80%] overflow-hidden rounded-md bg-white lg:hidden",
           contentClassName,

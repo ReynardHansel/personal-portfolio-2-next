@@ -2,7 +2,6 @@
 
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
-import img from "public/images/bw-cool.png";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 10;
@@ -100,7 +99,7 @@ const Images = ({ imgIndex, imgs }: { imgIndex: number; imgs: string[] }) => {
               scale: imgIndex === idx ? 0.95 : 0.85,
             }}
             transition={SPRING_OPTIONS}
-            className="aspect-video w-full shrink-0 rounded-2xl object-cover shadow-md"
+            className="aspect-video w-full shrink-0 rounded-2xl object-cover shadow-lg"
           />
         );
       })}
