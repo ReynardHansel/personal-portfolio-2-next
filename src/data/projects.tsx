@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
-import Image from "next/image"; // Assuming you're using Next.js
+// import Image from "next/image"; // Assuming you're using Next.js
+import { SwipeCarousel } from "@/app/components/ui/SwipeCarousel";
 
 // Define the type for the content items
 interface ContentItem {
   title: string;
   description: string | ReactNode;
   content: ReactNode;
+  images?: string[];
 }
 
 // Export the content array
@@ -30,9 +32,13 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Collaborative Editing
-      </div>
+      <SwipeCarousel
+        imgs={[
+          "/images/projects/metallica/1.png",
+          "/images/projects/metallica/2.png",
+          "/images/projects/metallica/3.png",
+        ]}
+      />
     ),
   },
   {
@@ -56,15 +62,13 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <div className="flex h-full w-full items-center justify-center text-white">
-        <Image
-          src="/linear.webp"
-          width={300}
-          height={300}
-          className="h-full w-full object-cover"
-          alt="linear board demo"
-        />
-      </div>
+      <SwipeCarousel
+        imgs={[
+          "/images/projects/gycc/1.png",
+          "/images/projects/gycc/2.png",
+          "/images/projects/gycc/3.png",
+        ]}
+      />
     ),
   },
   {
@@ -92,11 +96,14 @@ export const content: ContentItem[] = [
         </p>
       </>
     ),
-
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] text-white">
-        Version control
-      </div>
+      <SwipeCarousel
+        imgs={[
+          "/images/projects/bncc/1.png",
+          "/images/projects/bncc/2.png",
+          "/images/projects/bncc/3.png",
+        ]}
+      />
     ),
   },
   {
@@ -104,10 +111,12 @@ export const content: ContentItem[] = [
     description: (
       <>
         <p>
-          My first project that touches Back-End and Database. Even as a team, I
-          struggled hard at figuring out how to make the connection between
-          FrontEnd - BackEnd - Database works. Tutorials were lacking in YouTube
-          and on the web back then because NextJS' App Router was still new.
+          My first project that touches Back-End and Database. This project is
+          the final assignment for my Database course in college. Even as a
+          team, I struggled hard at figuring out how to make the connection
+          between FrontEnd - BackEnd - Database works. Tutorials were lacking in
+          YouTube and on the web back then because NextJS' App Router was still
+          new.
         </p>
         <p>
           I contacted and bothered my friends that are more experienced than me.
@@ -119,9 +128,16 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Running out of content
-      </div>
+      <SwipeCarousel
+        imgs={[
+          "/images/projects/aol-db/1.png",
+          "/images/projects/aol-db/2.png",
+          "/images/projects/aol-db/3.png",
+          "/images/projects/aol-db/4.png",
+          "/images/projects/aol-db/5.png",
+          "/images/projects/aol-db/6.png",
+        ]}
+      />
     ),
   },
   {
@@ -147,9 +163,16 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
-        Running out of content
-      </div>
+      <SwipeCarousel
+        imgs={[
+          "/images/projects/technoscape/1.png",
+          "/images/projects/technoscape/2.png",
+          "/images/projects/technoscape/3.png",
+          "/images/projects/technoscape/5.png",
+          "/images/projects/technoscape/6.png",
+          "/images/projects/technoscape/7.png",
+        ]}
+      />
     ),
   },
 ];
