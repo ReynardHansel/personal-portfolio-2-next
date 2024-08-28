@@ -10,7 +10,7 @@ export const StickyScroll = ({
 }: {
   content: {
     title: string;
-    description: string;
+    description: string | React.ReactNode;
     content?: React.ReactNode | any;
   }[];
   contentClassName?: string;
@@ -21,7 +21,7 @@ export const StickyScroll = ({
     // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
     // target: ref,
     container: ref,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end start"],
   });
   const cardLength = content.length;
 
@@ -60,53 +60,71 @@ export const StickyScroll = ({
   }, [activeCard]);
 
   return (
-    <motion.div
-      // animate={{
-      //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-      // }}
-      className="relative my-[6vh] flex h-[80vh] w-screen justify-between space-x-10 overflow-y-auto rounded-md px-[10vw] [&::-webkit-scrollbar]:hidden"
-      ref={ref}
-    >
-      <div className="div relative flex items-start px-4">
-        <div className="max-w-2xl">
-          {content.map((item, index) => (
-            <div key={item.title + index} className="my-20  border-red-500">
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
-                }}
-                className="text-2xl font-bold tracking-wider text-black md:text-3xl"
-              >
-                {item.title}
-              </motion.h2>
-              <motion.p
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
-                }}
-                className="mt-10 max-w-lg text-lg tracking-wide text-gray-700"
-              >
-                {item.description}
-              </motion.p>
-            </div>
-          ))}
-          <div className="h-40" />
-        </div>
-      </div>
+    <div className="flex flex-col items-center">
+      {/* CONTENT */}
       <div
         style={{ background: backgroundGradient }}
         className={cn(
-          "sticky top-10 hidden h-[45vh] w-[35vw] overflow-hidden rounded-md bg-white lg:block",
+          "sticky top-10 h-[30vh] w-[80%] overflow-hidden rounded-md bg-white lg:hidden",
           contentClassName,
         )}
       >
         {content[activeCard].content ?? null}
       </div>
-    </motion.div>
+
+      <motion.div
+        // animate={{
+        //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+        // }}
+        className="relative my-[6vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[10vw] [&::-webkit-scrollbar]:hidden"
+        ref={ref}
+      >
+        <div className="div relative flex items-start px-4">
+          <div className="max-w-2xl">
+            {content.map((item, index) => (
+              <div
+                key={item.title + index}
+                className="mb-40 mt-1 border-red-500 lg:mb-20"
+              >
+                <motion.h2
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: activeCard === index ? 1 : 0.3,
+                  }}
+                  className="text-2xl font-bold tracking-wider text-black md:text-3xl"
+                >
+                  {item.title}
+                </motion.h2>
+                <motion.p
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    opacity: activeCard === index ? 1 : 0.3,
+                  }}
+                  className="mt-10 text-lg lg:text-base xl:text-lg tracking-wide text-gray-700 lg:max-w-md xl:max-w-xl"
+                >
+                  {item.description}
+                </motion.p>
+              </div>
+            ))}
+            <div className="h-20 lg:h-52" />
+          </div>
+        </div>
+
+        {/* CONTENT */}
+        <div
+          style={{ background: backgroundGradient }}
+          className={cn(
+            "sticky top-0 hidden h-[45vh] w-[38vw] overflow-hidden rounded-md bg-white lg:block",
+            contentClassName,
+          )}
+        >
+          {content[activeCard].content ?? null}
+        </div>
+      </motion.div>
+    </div>
   );
 };
