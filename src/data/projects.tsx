@@ -12,8 +12,23 @@ interface ContentItem {
 export const content: ContentItem[] = [
   {
     title: "Metallica Web Project (incomplete)",
-    description:
-      'My very first successful web dev project. Here I learned HTML and CSS and how they are used as a foundation to build the web that I see everyday. I was so excited that I went out of my way to build an additional page: "Metallica-quotes.html" which is not included in the tutorial. There I tried CSS grid for the first time and I almost gave up to be honest :"). I also tried to download a font so the website would look more "Metallica" and successfully applied it. Later I learned git and github, and I pushed this project to my repo.',
+    description: (
+      <>
+        <p>
+          My very first successful web dev project. Here I learned HTML and CSS
+          and how they are used as a foundation to build the web that I see
+          everyday. I was so excited that I went out of my way to build an
+          additional page: "Metallica-quotes.html" which is not included in the
+          tutorial.
+        </p>
+        <p>
+          There I tried CSS grid for the first time and I almost gave up to be
+          honest :"). I also tried to download a font so the website would look
+          more "Metallica" and successfully applied it. Later I learned git and
+          github, and I pushed this project to my repo.
+        </p>
+      </>
+    ),
     content: (
       <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] text-white">
         Collaborative Editing
@@ -22,8 +37,24 @@ export const content: ContentItem[] = [
   },
   {
     title: "GYCC Prayer Support",
-    description:
-      "My first real project that gets published/hosted online and used in real-time by my church community. The idea is to support our user's prayer by collecting their prayer intention and then pray it together for them. I was so excited when I learned that it's possible to host a site online for free, even to gather data using forms! I tried my best here for the first time on CSS animations to make a pleasing experience for my community and every user. Finally, I hosted it on netlify and the project is online and is being used until this day. My first ever project that is 'useful' and my way to give back to the community :D!!",
+    description: (
+      <>
+        <p>
+          My first real project that gets published/hosted online and used in
+          real-time by my church community. The idea is to support our user's
+          prayer by collecting their prayer intention and then pray it together
+          for them. I was so excited when I learned that it's possible to host a
+          site online for free, even to gather data using forms!
+        </p>
+        <p>
+          I tried my best here for the first time on CSS animations to make a
+          pleasing experience for my community and every user. Finally, I hosted
+          it on netlify and the project is online and is being used until this
+          day. My first ever project that is 'useful' and my way to give back to
+          the community :D!!
+        </p>
+      </>
+    ),
     content: (
       <div className="flex h-full w-full items-center justify-center text-white">
         <Image
@@ -40,7 +71,7 @@ export const content: ContentItem[] = [
     title: "BNCC Store",
     description: (
       <>
-        <p className="mb-9">
+        <p>
           My first experience in team leading and also my first time touching
           Javascript. I must say it was quite a challenging but fun experience.
           I get to really connect with my team members at BNCC on a much deeper
@@ -72,7 +103,7 @@ export const content: ContentItem[] = [
     title: "Assurance of Learning: Database",
     description: (
       <>
-        <p className="mb-9">
+        <p>
           My first project that touches Back-End and Database. Even as a team, I
           struggled hard at figuring out how to make the connection between
           FrontEnd - BackEnd - Database works. Tutorials were lacking in YouTube
@@ -97,7 +128,7 @@ export const content: ContentItem[] = [
     title: "Technoscape - Techno Summit",
     description: (
       <>
-        <p className="mb-9">
+        <p>
           My first time working within a team, for a professional and live
           project of a big event. Here my view in project management in a whole
           is expanded and I got to see a different view and approach to problem

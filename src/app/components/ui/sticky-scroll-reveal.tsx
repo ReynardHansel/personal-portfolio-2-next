@@ -65,7 +65,7 @@ export const StickyScroll = ({
       <div
         style={{ background: backgroundGradient }}
         className={cn(
-          "sticky top-10 h-[30vh] w-[80%] overflow-hidden rounded-md bg-white lg:hidden",
+          "sticky top-10 h-[25vh] w-[85%] sm:w-[80%] overflow-hidden rounded-md bg-white lg:hidden",
           contentClassName,
         )}
       >
@@ -76,7 +76,7 @@ export const StickyScroll = ({
         // animate={{
         //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
         // }}
-        className="relative my-[6vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[10vw] [&::-webkit-scrollbar]:hidden"
+        className="relative my-[3.5vh] md:my-[6vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[5vw] sm:px-[8vw] md:px-[10vw] [&::-webkit-scrollbar]:hidden"
         ref={ref}
       >
         <div className="div relative flex items-start px-4">
@@ -84,7 +84,7 @@ export const StickyScroll = ({
             {content.map((item, index) => (
               <div
                 key={item.title + index}
-                className="mb-40 mt-1 border-red-500 lg:mb-20"
+                className="mb-14 mt-1 border-red-500 lg:mb-20"
               >
                 <motion.h2
                   initial={{
@@ -97,17 +97,17 @@ export const StickyScroll = ({
                 >
                   {item.title}
                 </motion.h2>
-                <motion.p
+                <motion.div
                   initial={{
                     opacity: 0,
                   }}
                   animate={{
                     opacity: activeCard === index ? 1 : 0.3,
                   }}
-                  className="mt-10 text-lg lg:text-base xl:text-lg tracking-wide text-gray-700 lg:max-w-md xl:max-w-xl"
+                  className="mt-7 lg:mt-10 flex flex-col gap-9 text-base tracking-wide text-gray-700 lg:max-w-md xl:max-w-xl xl:text-lg"
                 >
                   {item.description}
-                </motion.p>
+                </motion.div>
               </div>
             ))}
             <div className="h-20 lg:h-52" />
