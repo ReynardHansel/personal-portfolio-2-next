@@ -14,6 +14,7 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./public/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {

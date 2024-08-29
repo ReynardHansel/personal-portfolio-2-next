@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 // import Image from "next/image"; // Assuming you're using Next.js
 import { SwipeCarousel } from "@/app/components/ui/SwipeCarousel";
+import Link from "next/link";
+import ProjectDetails from "@/app/components/Reusable/ProjectDetails";
 
 // Define the type for the content items
 interface ContentItem {
@@ -32,13 +34,34 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <SwipeCarousel
-        imgs={[
-          "/images/projects/metallica/1.png",
-          "/images/projects/metallica/2.png",
-          "/images/projects/metallica/3.png",
-        ]}
-      />
+      <>
+        <SwipeCarousel
+          imgs={[
+            "/images/projects/metallica/1.png",
+            "/images/projects/metallica/2.png",
+            "/images/projects/metallica/3.png",
+          ]}
+        />
+        <ProjectDetails
+          techstack="HTML - CSS - Git - GitHub"
+          newLearned="HTML - CSS - Git - GitHub"
+          github="https://github.com/ReynardHansel/Metallica-web-project"
+          website="https://reynardhansel.github.io/Metallica-web-project"
+          additional={
+            <>
+              <p className="whitespace-nowrap text-lg font-medium">
+                Tutorial from:
+              </p>
+              <Link
+                className="overflow-hidden text-ellipsis whitespace-nowrap tracking-wider underline"
+                href="https://www.youtube.com/watch?v=HfTXHrWMGVY&list=PLZlA0Gpn_vH-cEDOofOujFIknfZZpIk3a"
+              >
+                https://www.youtube.com/watch?v=HfTXHrWMGVY&list=PLZlA0Gpn_vH-cEDOofOujFIknfZZpIk3a
+              </Link>
+            </>
+          }
+        />
+      </>
     ),
   },
   {
@@ -62,13 +85,21 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <SwipeCarousel
-        imgs={[
-          "/images/projects/gycc/1.png",
-          "/images/projects/gycc/2.png",
-          "/images/projects/gycc/3.png",
-        ]}
-      />
+      <>
+        <SwipeCarousel
+          imgs={[
+            "/images/projects/gycc/1.png",
+            "/images/projects/gycc/2.png",
+            "/images/projects/gycc/3.png",
+          ]}
+        />
+        <ProjectDetails
+          techstack="HTML - CSS - Git - GitHub"
+          newLearned="CSS Animations - Netlify"
+          github="https://github.com/ReynardHansel/GYCC-prayer-support"
+          website="https://gycc-prayer-support.netlify.app"
+        />
+      </>
     ),
   },
   {
@@ -97,13 +128,21 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <SwipeCarousel
-        imgs={[
-          "/images/projects/bncc/1.png",
-          "/images/projects/bncc/2.png",
-          "/images/projects/bncc/3.png",
-        ]}
-      />
+      <>
+        <SwipeCarousel
+          imgs={[
+            "/images/projects/bncc/1.png",
+            "/images/projects/bncc/2.png",
+            "/images/projects/bncc/3.png",
+          ]}
+        />
+        <ProjectDetails
+          techstack="HTML - CSS - JS - Netlify - Git - GitHub - GitLFS - Figma"
+          newLearned="Javascript"
+          github="https://github.com/ReynardHansel/BNCC-Store"
+          website="https://team3-bncc-store.netlify.app/"
+        />
+      </>
     ),
   },
   {
@@ -128,16 +167,23 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <SwipeCarousel
-        imgs={[
-          "/images/projects/aol-db/1.png",
-          "/images/projects/aol-db/2.png",
-          "/images/projects/aol-db/3.png",
-          "/images/projects/aol-db/4.png",
-          "/images/projects/aol-db/5.png",
-          "/images/projects/aol-db/6.png",
-        ]}
-      />
+      <>
+        <SwipeCarousel
+          imgs={[
+            "/images/projects/aol-db/1.png",
+            "/images/projects/aol-db/2.png",
+            "/images/projects/aol-db/3.png",
+            "/images/projects/aol-db/4.png",
+            "/images/projects/aol-db/5.png",
+            "/images/projects/aol-db/6.png",
+          ]}
+        />
+        <ProjectDetails
+          techstack="Next - Tailwind - XAMPP - MySQL"
+          newLearned="NextJS routing - Tailwind"
+          github="https://github.com/ReynardHansel/AoL-Database"
+        />
+      </>
     ),
   },
   {
@@ -163,16 +209,24 @@ export const content: ContentItem[] = [
       </>
     ),
     content: (
-      <SwipeCarousel
-        imgs={[
-          "/images/projects/technoscape/1.png",
-          "/images/projects/technoscape/2.png",
-          "/images/projects/technoscape/3.png",
-          "/images/projects/technoscape/5.png",
-          "/images/projects/technoscape/6.png",
-          "/images/projects/technoscape/7.png",
-        ]}
-      />
+      <>
+        <SwipeCarousel
+          imgs={[
+            "/images/projects/technoscape/1.png",
+            "/images/projects/technoscape/2.png",
+            "/images/projects/technoscape/3.png",
+            "/images/projects/technoscape/5.png",
+            "/images/projects/technoscape/6.png",
+            "/images/projects/technoscape/7.png",
+          ]}
+        />
+        <ProjectDetails
+          techstack="HTML - CSS - Tailwind - JS - Git - GitHub"
+          newLearned="Teamwork - Absolute Element Positioning - Design Thinking"
+          github="(Private Organization Repo)"
+          website="https://technoscape.id/techno-summit"
+        />
+      </>
     ),
   },
 ];
