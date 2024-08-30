@@ -6,12 +6,13 @@ import Title from "../Reusable/Title";
 import { LinkPreview } from "../ui/link-preview";
 import ButtonGradient from "../Reusable/ButtonGradient";
 import AboutImage from "./AboutImage";
+import Link from "next/link";
 // import { Button } from "@/components/ui/button";
 
 const containerVariants = {
   visible: {
     transition: {
-      staggerChildren: .7,
+      staggerChildren: 0.7,
     },
   },
 };
@@ -118,7 +119,12 @@ export default function AboutText() {
       </div> */}
 
       <ButtonGradient>
-        <a href="#">CV Download</a>
+        <Link
+          href="https://drive.google.com/file/d/17F4z6iU6DxgepIFvBBKap3gPNNtqIEUK/view?usp=sharing"
+          target="_blank"
+        >
+          CV Download
+        </Link>
       </ButtonGradient>
     </motion.div>
   );

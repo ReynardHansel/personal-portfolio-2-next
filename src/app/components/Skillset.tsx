@@ -29,7 +29,7 @@ const skills2 = [
 
 export default function Skillset() {
   return (
-    <div className="my-[15vh] flex flex-col items-center justify-center gap-[6vh]">
+    <div id="skillset" className="my-[15vh] flex flex-col items-center justify-center gap-[6vh]">
       <Title>Skill Set</Title>
       <p className="px-[10vw] text-center font-plus-jakarta-sans tracking-wider md:px-[15vw] lg:px-[15vw] lg:text-lg">
         Over the years, I've gathered a toolkit of skills that help me deliver

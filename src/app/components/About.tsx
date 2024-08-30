@@ -6,7 +6,7 @@ import AboutImage from "./About/AboutImage";
 
 export default function About() {
   return (
-    <div className="relative flex items-center justify-center py-14 sm:py-20 lg:py-32">
+    <div id="#about" className="relative flex items-center justify-center py-14 sm:py-20 lg:py-32">
       <Image
         src={blob1}
         alt=""
