@@ -6,13 +6,15 @@ import { useState } from "react";
 
 const NavbarVariants = {
   hidden: {
-    y: -100,
+    y: -150,
+    transition: {
+      duration: 0.3,
+    },
   },
   visible: {
     y: 0,
     transition: {
-      duration: 0.5,
-      delay: 0.2,
+      duration: 0.3,
     },
   },
 };
@@ -20,6 +22,8 @@ const NavbarVariants = {
 export default function Navbar() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => console.log(latest));
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious()!;
@@ -36,7 +40,8 @@ export default function Navbar() {
       variants={NavbarVariants}
       initial="hidden"
       animate={hidden ? "hidden" : "visible"}
-      className="fixed top-0 z-50 flex h-[13vh] w-full items-center justify-between px-[10vw]"
+      // animate="visible"
+      className="fixed top-0 z-50 flex h-[11.5vh] w-full items-center justify-between rounded-b-3xl bg-white/50 px-[10vw] shadow-lg shadow-broken_white backdrop-blur-md"
     >
       <h2 className="font-nunito-sans text-lg font-bold sm:text-2xl">
         Reynard H.
