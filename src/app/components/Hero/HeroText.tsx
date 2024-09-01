@@ -38,7 +38,7 @@ const words = [
     className: "text-[#6FC0AC]",
   },
   {
-    text: "also a Software Engineer",
+    text: "a Software Engineer",
     className: "text-blue-500",
   },
 ];
