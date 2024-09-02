@@ -29,15 +29,15 @@ export const HeroHighlight = ({
   return (
     <div
       className={cn(
-        "relative min-h-[calc(101vh+2em)] flex items-center bg-white dark:bg-black justify-center w-full group",
-        containerClassName
+        "group [mask-image:linear-gradient(to_top,transparent,white_13%)] relative flex min-h-[calc(104vh+4em)] w-full items-center justify-center bg-white dark:bg-black",
+        containerClassName,
       )}
       onMouseMove={handleMouseMove}
     >
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none" />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+      <div className="pointer-events-none absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800" />
       <motion.div
-        className="pointer-events-none bg-dot-thick-indigo-600 dark:bg-dot-thick-indigo-600   absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 bg-dot-thick-indigo-600 group-hover:opacity-100 dark:bg-dot-thick-indigo-600"
         style={{
           WebkitMaskImage: useMotionTemplate`
             radial-gradient(
@@ -87,8 +87,8 @@ export const Highlight = ({
         display: "inline",
       }}
       className={cn(
-        `relative inline-block pb-1   px-1 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500`,
-        className
+        `relative inline-block rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 px-1 pb-1 dark:from-indigo-500 dark:to-purple-500`,
+        className,
       )}
     >
       {children}
