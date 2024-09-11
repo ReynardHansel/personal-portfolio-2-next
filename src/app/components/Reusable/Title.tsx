@@ -49,7 +49,7 @@ export default function Title({ children, className, blockClassName, textClassNa
       <div className={cn("mr-[.85rem] w-[.35rem] rounded-full bg-porto_purple sm:w-2", blockClassName)}></div>
       <motion.div
         variants={textVariants}
-        className={cn("font-helvetica-neue text-4xl font-bold text-porto_purple lg:text-4xl", textClassName)}
+        className={cn("font-helvetica-neue text-3xl font-bold text-porto_purple lg:text-4xl", textClassName)}
       >
         {children}
       </motion.div>
