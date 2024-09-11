@@ -21,7 +21,7 @@ export default function ButtonGradient({ children, className }: ButtonGradientPr
       <Button
         variant="none"
         size="lg"
-        className="rounded-full border-2 border-porto_purple bg-transparent px-5 py-5 text-xl font-semibold tracking-wide text-porto_purple transition-all duration-200 group-hover/hero_cta:text-white"
+        className="rounded-full border-2 border-porto_purple bg-transparent font-plus-jakarta-sans px-5 py-5 text-xl font-semibold tracking-wide text-porto_purple transition-all duration-200 group-hover/hero_cta:text-white"
       >
         {children}
       </Button>

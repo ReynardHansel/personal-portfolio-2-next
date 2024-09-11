@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import "./clip_heroImage.css";
 import BlobBackground from "./BlobBackground";
+import Text_Reynard from "./Text_Reynard";
 
 const imgVariants = {
   hidden: {
@@ -35,6 +36,7 @@ export default function HeroImage() {
       id="container"
       className="relative left-6 hidden overflow-visible sm:flex items-center justify-center lg:top-12"
     >
+      {/* <Text_Reynard /> */}
       <BlobBackground />
       <div
         id="clipper"

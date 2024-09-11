@@ -43,10 +43,10 @@ export default function Navbar() {
       // animate="visible"
       className="fixed top-0 z-50 flex h-[11.5vh] w-full items-center justify-between rounded-b-3xl bg-white/60 px-[10vw] shadow-lg shadow-broken_white backdrop-blur-md"
     >
-      <h2 className="font-nunito-sans text-lg font-bold sm:text-2xl">
+      <h2 className="font-helvetica-neue text-lg font-bold sm:text-2xl">
         Reynard H.
       </h2>
-      <div className="flex justify-between gap-[6vw] font-nunito-sans sm:text-lg">
+      <div className="flex justify-between gap-[6vw] font-helvetica-neue sm:text-lg">
         <Link href="#about" className="">
           About
         </Link>

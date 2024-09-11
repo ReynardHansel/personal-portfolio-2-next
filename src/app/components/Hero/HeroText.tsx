@@ -53,7 +53,7 @@ export default function HeroText() {
     >
       <motion.h1
         variants={childVariants}
-        className="text-start text-4xl font-bold leading-relaxed text-neutral-700 dark:text-white sm:text-left lg:text-5xl"
+        className="text-start text-4xl font-helvetica-neue font-semibold leading-relaxed text-neutral-700 dark:text-white sm:text-left lg:text-5xl"
       >
         Hi, I'm <FlipWords words={words} />
       </motion.h1>

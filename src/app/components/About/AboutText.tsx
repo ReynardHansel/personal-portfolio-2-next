@@ -40,7 +40,7 @@ export default function AboutText() {
       whileInView="visible"
       animate="animate"
       viewport={{ margin: "-150px", once: true }}
-      className="relative flex flex-col gap-6 tracking-wide md:w-[55%] lg:text-[1.08rem]"
+      className="relative flex flex-col font-plus-jakarta-sans gap-6 tracking-wider md:w-[55%] lg:text-[1.08rem]"
     >
       {/* MOBILE div */}
       <div className="flex justify-between md:hidden">
