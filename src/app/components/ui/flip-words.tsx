@@ -80,7 +80,7 @@ export const FlipWords = ({
                 duration: 0.4,
               }}
               className={cn(
-                "inline-block",
+                "inline",
                 currentWord.className // Apply the className from the current word
               )}
             >

@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 
 export default function Hero() {
   return (
-    <HeroHighlight className="flex flex-col max-w-[80vw] items-center justify-center">
+    <HeroHighlight className="flex max-w-[80vw] flex-col items-center justify-center px-[5vw] sm:px-0">
       <div className="flex">
         {/* TEXT */}
         <HeroText />
