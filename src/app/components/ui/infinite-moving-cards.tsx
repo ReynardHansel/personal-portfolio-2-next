@@ -77,7 +77,7 @@ export const InfiniteMovingCards = ({
       >
         {skills.map((skill, idx) => (
           <li
-            className="max-w-full min-w-fit w-28 grid place-items-center relative rounded-full flex-shrink-0 border-slate-700 px-3 py-3"
+            className="max-w-full min-w-fit w-28 grid place-items-center relative rounded-full flex-shrink-0 border-slate-700 px-1 py-2 sm:px-3 sm:py-3"
             style={{
               background:
                 "linear-gradient(90deg, #5060F0, #6E7AEA)",
