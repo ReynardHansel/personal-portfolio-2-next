@@ -3,6 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import Hamburger from "./Navbar/Hamburger";
 
 const NavbarVariants = {
   hidden: {
@@ -27,7 +28,7 @@ export default function Navbar() {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious()!;
-    if (latest > previous && latest > 150) {
+    if (latest > previous && latest > 100) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -41,12 +42,13 @@ export default function Navbar() {
       initial="hidden"
       animate={hidden ? "hidden" : "visible"}
       // animate="visible"
-      className="fixed top-0 z-50 flex h-[11.5vh] w-full items-center justify-between rounded-b-3xl bg-white/60 px-[10vw] shadow-lg shadow-broken_white backdrop-blur-md"
+      className="fixed top-0 z-50 flex py-[2vh] w-full items-center justify-between rounded-b-3xl bg-white/60 px-[10vw] shadow-lg shadow-broken_white backdrop-blur-md"
     >
       <h2 className="font-helvetica-neue text-lg font-bold sm:text-2xl">
         Reynard H.
       </h2>
-      <div className="flex justify-between gap-[6vw] font-helvetica-neue sm:text-lg">
+      <Hamburger />
+      <div className="justify-between gap-[6vw] hidden font-helvetica-neue sm:flex sm:text-lg">
         <Link href="#about" className="">
           About
         </Link>
