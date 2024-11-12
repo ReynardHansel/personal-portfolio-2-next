@@ -9,7 +9,7 @@ import Skillset from "./components/Skillset";
 
 export default function Home() {
   return (
-  <div className="overflow-x-hidden">
+  <div className="overflow-x-hidden bg-white">
     <Navbar />
     <Hero />
     <About />

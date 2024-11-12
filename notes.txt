@@ -1,3 +1,2 @@
 Next:
-- Hero img hover animation
-- Make the button it's own reusable component
+- Give dark mode background & matching color
