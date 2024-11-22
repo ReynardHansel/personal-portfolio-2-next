@@ -80,12 +80,13 @@ export const StickyScroll = ({
         className="relative my-[3.5vh] md:my-[6vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[5vw] sm:px-[8vw] md:px-[10vw] [&::-webkit-scrollbar]:hidden"
         ref={ref}
       >
-        <div className="div relative flex items-start px-4">
-          <div className="max-w-2xl">
+        <div className="div max-w-2xl relative flex flex-col items-start px-4">
             {content.map((item, index) => (
-              <div
+              <motion.div
                 key={item.title + index}
                 className="mb-14 mt-1 border-red-500 lg:mb-20"
+                // initial={{ scale: 1 }}
+                animate={{ scale: activeCard === index ? 1 : 0.975 }}
               >
                 <motion.h2
                   initial={{
@@ -109,10 +110,9 @@ export const StickyScroll = ({
                 >
                   {item.description}
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
             <div className="h-20 lg:h-52" />
-          </div>
         </div>
 
         {/* CONTENT */}
