@@ -10,14 +10,14 @@ import Skillset from "./components/Skillset";
 export default function Home() {
   return (
   <div className="overflow-x-hidden bg-white">
-    <Navbar />
-    <Hero />
-    <About />
+    {/* <Navbar /> */}
+    {/* <Hero /> */}
+    {/* <About /> */}
     <Skillset />
-    <Projects />
+    {/* <Projects /> */}
     {/* <UnderDevelopment /> */}
-    <Contact />
-    <Footer />
+    {/* <Contact /> */}
+    {/* <Footer /> */}
   </div>
   );
 }
