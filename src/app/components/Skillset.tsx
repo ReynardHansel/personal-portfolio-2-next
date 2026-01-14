@@ -11,7 +11,12 @@ export default function Skillset() {
       <Title>Skill Set</Title>
       <div className="flex max-w-5xl flex-wrap justify-center gap-4">
         {skillData.map((skill, index) => (
-          <SkillCard key={index} name={skill.name} icon={skill.icon || ""} />
+          <SkillCard
+            key={index}
+            name={skill.name}
+            icon={skill.icon || ""}
+            color={skill.color || ""}
+          />
         ))}
       </div>
     </div>
