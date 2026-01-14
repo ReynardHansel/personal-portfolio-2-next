@@ -1,57 +1,53 @@
 import Title from "./Reusable/Title";
 import SkillCard from "./Skillset/SkillCard";
-// import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 
-const skills1 = [
-  "React",
-  "NextJS",
-  "Tailwind",
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
-  "Framer Motion",
-  "Figma",
-];
+// Example: You'll likely need to map these names to actual file paths
+// For now, I'm using your arduino path as a placeholder for all
+const logoPath = "/svg/logo/";
 
-const skills2 = [
-  "SQL",
-  "PostgreSQL",
-  "MySQL",
-  "Prisma",
-  "tRPC",
-  "ExpressJS",
-  "NextAuth",
-  "C",
-  "Python",
-  "Java",
-  "Arduino",
+const skillData = [
+  { name: "React", icon: `${logoPath}react.svg` },
+  { name: "NextJS", icon: `${logoPath}nextdotjs.svg` },
+  { name: "Tailwind", icon: `${logoPath}tailwindcss.svg` },
+  { name: "HTML", icon: `${logoPath}html5.svg` },
+  { name: "CSS", icon: `${logoPath}css.svg` },
+  { name: "JavaScript", icon: `${logoPath}javascript.svg` },
+  { name: "TypeScript", icon: `${logoPath}typescript.svg` },
+  { name: "Framer Motion", icon: `${logoPath}framer.svg` },
+  { name: "Figma", icon: `${logoPath}figma.svg` },
+  { name: "SQL", icon: `${logoPath}sql_database.svg` },
+  { name: "PostgreSQL", icon: `${logoPath}postgresql.svg` },
+  { name: "MySQL", icon: `${logoPath}mysql.svg` },
+  { name: "Prisma", icon: `${logoPath}prisma.svg` },
+  { name: "tRPC", icon: `${logoPath}trpc.svg` },
+  { name: "ExpressJS", icon: `${logoPath}express.svg` },
+  { name: "C Language", icon: `${logoPath}c.svg` },
+  { name: "Python", icon: `${logoPath}python.svg` },
+  { name: "Java", icon: `${logoPath}java.svg` },
+  { name: "Arduino", icon: `${logoPath}arduino.svg` },
 ];
 
 export default function Skillset() {
   return (
-    <div id="skillset" className="my-[15vh] flex flex-col items-center justify-center gap-[6vh]">
+    <div
+      id="skillset"
+      className="my-[15vh] flex flex-col items-center justify-center gap-[6vh] px-4"
+    >
       <Title>Skill Set</Title>
-      {/* <p className="px-[10vw] text-center font-plus-jakarta-sans tracking-wider md:px-[15vw] lg:px-[15vw] lg:text-lg">
-        Over the years, I've gathered a toolkit of skills that help me deliver
-        high-quality, efficient, and innovative solutions. With a solid
-        foundation in modern web development and software engineering, I'm
-        equipped to tackle challenges across various domains. Below are the
-        skills and tech stacks that drive my success and make it all happen.
-      </p> */}
-      <div className="grid w-full max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {/* <InfiniteMovingCards
-          speed="normal"
-          direction="left"
-          skills={skills1}
-        />
-        <InfiniteMovingCards speed="normal" direction="right" skills={skills2} /> */}
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
-        <SkillCard />
+      
+      {/* This layout mimics the video:
+        1. flex-wrap: Items flow to the next line if space runs out.
+        2. justify-center: Items align to the center (not left).
+        3. max-w-5xl: Prevents the row from getting too wide on huge screens.
+      */}
+      <div className="flex flex-wrap justify-center gap-4 max-w-5xl">
+        {skillData.map((skill, index) => (
+           <SkillCard 
+             key={index} 
+             name={skill.name} 
+             icon={skill.icon || ""}
+           />
+        ))}
       </div>
     </div>
   );

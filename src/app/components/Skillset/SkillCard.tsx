@@ -1,25 +1,64 @@
-import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
-import image from "/public/svg/logo/arduino.svg"
-import Image from "next/image";
+"use client";
 
-export default function SkillCard() {
-    return (
-       <Item
+import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
+// import iconEx from "/public/svg/logo/arduino.svg";
+import Image from "next/image";
+import { motion, Variants } from "framer-motion";
+
+// Helper for animation states
+const textVariants: Variants = {
+  closed: {
+    // x: -20,
+    width: 0,
+    opacity: 0,
+    paddingLeft: 0,
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+  open: {
+    // x: 0,
+    width: "auto",
+    opacity: 1,
+    paddingLeft: 12, // Add spacing (pl-3) when open
+    transition: { duration: 0.3, ease: "easeInOut" },
+  },
+};
+
+// Props to make it reusable
+interface SkillCardProps {
+  name: string;
+  icon: string;
+}
+
+export default function SkillCard({ name, icon }: SkillCardProps) {
+  return (
+    <motion.div
+      initial="closed"
+      // whileFocus="open"
+      whileHover="open"
+      className="h-full w-fit"
+    >
+      <Item
         variant="outline"
-        className="group w-full flex-nowrap justify-center gap-0 overflow-hidden px-3 py-3 transition-all duration-300 hover:shadow-sm sm:px-4 sm:py-4 sm:group-hover:justify-start sm:group-hover:gap-4"
-       >
-        <ItemMedia className="size-12 sm:size-14 md:size-16 lg:size-14 xl:size-16">
-            <Image
-              src={image}
-              alt="Arduino"
-              className="size-full object-contain"
-              width={64}
-              height={64}
-            />
+        className="w-fit cursor-pointer flex-row items-center justify-start gap-0 p-2 transition-colors hover:border-blue-500/50 sm:p-3"
+      >
+        <ItemMedia className="relative flex h-8 w-8 items-center justify-center sm:h-10 sm:w-10">
+          <Image
+            src={icon}
+            alt={name}
+            fill
+            className="object-contain"
+            unoptimized
+          />
         </ItemMedia>
-        <ItemContent className="max-w-0 opacity-0 transition-all duration-300 sm:group-hover:max-w-[14rem] sm:group-hover:opacity-100">
-            <ItemTitle className="whitespace-nowrap text-base sm:text-lg md:text-base lg:text-lg">Arduino</ItemTitle>
-        </ItemContent>
-       </Item>
-    )
+
+        <motion.div variants={textVariants} className="whitespace-nowrap">
+          <ItemContent>
+            <ItemTitle className="text-sm font-medium text-black sm:text-base">
+              {name}
+            </ItemTitle>
+          </ItemContent>
+        </motion.div>
+      </Item>
+    </motion.div>
+  );
 }
