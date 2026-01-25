@@ -27,14 +27,13 @@ export default function Skillset() {
         }
       });
 
-      // Group cards by their Y position (row)
       const rows: number[][] = [];
       let currentRow: number[] = [];
       let currentTop = positions[0]?.top;
 
       positions.forEach(({ index, top }) => {
-        if (top !== currentTop) {
-          // New row detected
+        // Allow a small tolerance (1px) for sub-pixel rendering differences
+        if (Math.abs(top - currentTop!) > 1) {
           if (currentRow.length > 0) {
             rows.push(currentRow);
           }
@@ -45,12 +44,10 @@ export default function Skillset() {
         }
       });
 
-      // Add the last row
       if (currentRow.length > 0) {
         rows.push(currentRow);
       }
 
-      // Mark the last card in every row (including the final row)
       rows.forEach((row) => {
         if (row.length > 0) {
           const lastIndexInRow = row[row.length - 1];
@@ -61,16 +58,13 @@ export default function Skillset() {
       setLastInRowIndices(indices);
     };
 
-    // Initial calculation
     updateLastInRow();
 
-    // Update on resize
     const resizeObserver = new ResizeObserver(updateLastInRow);
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);
     }
 
-    // Also listen to window resize for better responsiveness
     window.addEventListener("resize", updateLastInRow);
 
     return () => {
@@ -87,8 +81,7 @@ export default function Skillset() {
       <Title>Skill Set</Title>
       <motion.div
         ref={containerRef}
-        layout
-        className="flex max-w-5xl flex-wrap gap-4"
+        className="flex max-w-5xl flex-wrap gap-4 pr-8 sm:pr-20"
       >
         {skillData.map((skill, index) => (
           <div

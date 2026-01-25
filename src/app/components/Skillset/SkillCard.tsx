@@ -4,46 +4,34 @@ import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
-const containerVariants: Variants = {
+// 1. CONTAINER VARIANTS
+const cardVariants: Variants = {
   closed: {
+    backgroundColor: "rgba(0,0,0,0)",
     transition: { duration: 0.3, ease: "easeInOut" },
   },
-  open: {
+  open: (color) => ({
+    backgroundColor: color || "rgba(0,0,0,0)",
     transition: { duration: 0.3, ease: "easeInOut" },
-  },
+  }),
 };
 
+// 2. TEXT VARIANTS
 const textVariants: Variants = {
   closed: {
-    opacity: 0,
     width: 0,
+    opacity: 0,
     marginLeft: 0,
     transition: { duration: 0.3, ease: "easeInOut" },
   },
   open: {
-    opacity: 1,
     width: "auto",
+    opacity: 1,
     marginLeft: 12,
     transition: { duration: 0.3, ease: "easeInOut" },
   },
 };
 
-const textVariantsAbsolute: Variants = {
-  closed: {
-    opacity: 0,
-    width: 0,
-    left: "100%",
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
-  open: {
-    opacity: 1,
-    width: "auto",
-    left: "100%",
-    transition: { duration: 0.3, ease: "easeInOut" },
-  },
-};
-
-// Props to make it reusable
 interface SkillCardProps {
   name: string;
   icon: string;
@@ -59,25 +47,33 @@ export default function SkillCard({
 }: SkillCardProps) {
   return (
     <motion.div
-      variants={containerVariants}
-      initial="closed"
-      whileHover="open"
-      className={`group h-full ${isLastInRow ? "relative" : ""}`}
+      layout={!isLastInRow}
+      className="relative z-10 h-full min-h-8 w-fit min-w-8 rounded-md sm:min-h-10 sm:min-w-10"
     >
       <motion.div
-        whileHover={{ backgroundColor: color || "transparent" }}
-        transition={{ duration: 0.3 }}
-        className="overflow-hidden rounded-md"
+        variants={cardVariants}
+        custom={color}
+        initial="closed"
+        whileHover="open"
+        whileFocus="open"
+        layout
+        // FIX 1: Added 'w-max' (width: max-content).
+        // This stops the absolute container from squashing/wrapping its content.
+        className={`
+           group flex items-center rounded-md w-max
+           ${isLastInRow 
+             ? "absolute left-0 h-fit" 
+             : "relative h-full z-10"
+           }
+        `}
       >
         <Item
           variant="outline"
-          className={`cursor-pointer flex-row items-center justify-start gap-0 bg-transparent p-2 transition-all duration-300 group-hover:border-transparent sm:p-3 ${
-            isLastInRow ? "relative" : ""
-          }`}
+          className="flex flex-row flex-nowrap items-center gap-0 p-2 sm:p-3"
         >
-          <ItemMedia className="relative flex h-8 w-8 items-center justify-center sm:h-10 sm:w-10">
+          <ItemMedia className="relative flex h-8 w-8 shrink-0 items-center justify-center sm:h-10 sm:w-10">
             <Image
-              src={icon || "/placeholder.svg"} //TODO: add a placeholder icon in src
+              src={icon || "/placeholder.svg"}
               alt={name}
               fill
               className={`object-contain transition-all duration-300 ${
@@ -90,12 +86,10 @@ export default function SkillCard({
           </ItemMedia>
 
           <motion.div
-            variants={isLastInRow ? textVariantsAbsolute : textVariants}
-            className={`overflow-hidden whitespace-nowrap ${
-              isLastInRow ? "absolute top-0 z-10 pl-3" : ""
-            }`}
+            variants={textVariants}
+            className="overflow-hidden whitespace-nowrap"
           >
-            <ItemContent>
+            <ItemContent className="p-0">
               <ItemTitle
                 className={`text-sm font-medium text-black transition-colors duration-300 sm:text-base ${
                   name === "JavaScript" || name === "Motion"
