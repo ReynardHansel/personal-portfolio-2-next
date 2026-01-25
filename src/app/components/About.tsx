@@ -19,7 +19,7 @@ export default function About() {
         {/* TEXT */}
         <AboutText />
       </div>
-      <div className="absolute -bottom-32 right-0 -z-10 overflow-x-hidden md:-bottom-[13vh]">
+      <div className="absolute -bottom-32 right-0 z-0 overflow-visible md:-bottom-[13vh]">
         <Image
           src={blob2}
           alt=""
