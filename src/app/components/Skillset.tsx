@@ -81,7 +81,7 @@ export default function Skillset() {
       <Title>Skill Set</Title>
       <motion.div
         ref={containerRef}
-        className="flex max-w-5xl flex-wrap gap-4 pr-8 sm:pr-20"
+        className="flex max-w-5xl flex-wrap gap-4 px-[18%] sm:px-[20%]"
       >
         {skillData.map((skill, index) => (
           <div
