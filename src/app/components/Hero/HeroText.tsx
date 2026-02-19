@@ -38,6 +38,10 @@ const words = [
     className: "text-[#6FC0AC]",
   },
   {
+    text: "an iOS Developer",
+    className: "text-[#F05138]",
+  },
+  {
     text: "a Software Engineer",
     className: "text-blue-500",
   },
