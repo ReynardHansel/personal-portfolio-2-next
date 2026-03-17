@@ -1,3 +1,5 @@
+"use client";
+
 import profileImage from "public/images/bw-cool.png";
 // import testImage from "public/images/test.jpg";
 import Image from "next/image";
