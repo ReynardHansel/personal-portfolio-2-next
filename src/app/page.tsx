@@ -1,5 +1,6 @@
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Experience from "./components/Experience/Experience";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import HeroAbout from "./components/HeroAbout";
@@ -10,12 +11,13 @@ import Skillset from "./components/Skillset";
 
 export default function Home() {
   return (
-  <div className="overflow-x-hidden bg-white">
+  <div className="overflow-x-clip bg-white flex flex-col items-center">
     <Navbar />
     {/* <Hero /> */}
     {/* <About /> */}
     <HeroAbout />
     <Skillset />
+    <Experience />
     <Projects />
     {/* <UnderDevelopment /> */}
     <Contact />
