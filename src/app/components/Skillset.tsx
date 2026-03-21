@@ -9,7 +9,7 @@ export default function Skillset() {
   return (
     <div
       id="skillset"
-      className="my-[15vh] flex flex-col items-center justify-center gap-[5vh] px-4"
+      className="relative my-[15vh] flex flex-col items-center justify-center gap-[5vh] px-4"
     >
       {/* BLOB */}
       <div className="absolute -bottom-32 right-0 z-0 overflow-visible md:-bottom-[37vh]">
