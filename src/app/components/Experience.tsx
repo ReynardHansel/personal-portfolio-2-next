@@ -1,5 +1,5 @@
-import Title from "../Reusable/Title";
-import DetailsSection from "./DetailsSection";
+import Title from "./Reusable/Title";
+import DetailsSection from "./Experience/DetailsSection";
 
 export default function Experience() {
   return (
