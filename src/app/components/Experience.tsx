@@ -5,7 +5,7 @@ export default function Experience() {
   return (
     <section className="flex w-full flex-col items-center justify-center gap-[5vh]">
       <Title>Experience</Title>
-      <div className="space-around flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-12 px-6 py-8 md:flex-row md:items-start md:px-[5%] md:py-0">
+      <div className="space-around flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-[5vw] px-6 py-8 md:flex-row md:items-start md:px-[5%] md:py-0">
         {/* Experience */}
         <ExperienceSection />
 
