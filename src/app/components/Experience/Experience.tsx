@@ -1,10 +1,11 @@
 import Title from "../Reusable/Title";
+import DetailsSection from "./DetailsSection";
 
 export default function Experience() {
   return (
     <section className="flex w-full flex-col items-center justify-center gap-[5vh]">
       <Title>Experience</Title>
-      <div className="space-around flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-5 px-6 py-8 md:flex-row md:items-start md:px-[5%] md:py-0">
+      <div className="space-around flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-12 px-6 py-8 md:flex-row md:items-start md:px-[5%] md:py-0">
         {/* Experience */}
         <ExperienceSection />
 
@@ -12,9 +13,7 @@ export default function Experience() {
         <div className="hidden w-0.5 self-stretch bg-black md:block"></div>
 
         {/* Details */}
-        <div className="border-blue-5 flex flex-[2] flex-col items-center justify-center border-2 py-8 md:py-0">
-          <DetailsSection />
-        </div>
+        <DetailsSection />
       </div>
     </section>
   );
@@ -22,7 +21,7 @@ export default function Experience() {
 
 function ExperienceSection() {
   return (
-    <div className="flex flex-1 flex-col items-start justify-center">
+    <div className="flex flex-1 flex-col items-start justify-center md:py-10">
       {/* Duration */}
       <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-neutral-500">
         {/* <span className="h-2.5 w-2.5 rounded-full bg-neutral-600"></span> */}
@@ -31,21 +30,13 @@ function ExperienceSection() {
 
       {/* Company */}
       <p className="mt-10 text-[2.5rem] font-bold uppercase leading-none tracking-tight text-[#2d3334] sm:text-[3.25rem]">
-        METAVERS LABS
+        Apple Developer Academy
       </p>
 
       {/* Job Title */}
       <p className="mt-2 text-[1.3rem] font-light text-[#5a5f60]">
-        Lead Design Systems Architect
+        Junior iOS Developer
       </p>
     </div>
   );
-}
-
-function DetailsSection(){
-  return(
-    <div>
-      
-    </div>
-  )
 }
