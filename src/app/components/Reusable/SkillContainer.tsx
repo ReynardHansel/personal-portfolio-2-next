@@ -3,15 +3,16 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import SkillCard from "../Skillset/SkillCard";
+import { SkillName } from "../Skillset/skillData";
 
 type Skill = {
-  name: string;
+  name: SkillName;
   icon?: string;
   color?: string;
 };
 
 interface SkillContainerProps {
-  skills: Skill[];
+  skills: readonly Skill[];
 }
 
 export default function SkillContainer({skills}: SkillContainerProps) {
@@ -95,9 +96,7 @@ export default function SkillContainer({skills}: SkillContainerProps) {
           }}
         >
           <SkillCard
-            name={skill.name}
-            icon={skill.icon || ""}
-            color={skill.color || ""}
+            skill={skill.name}
             isLastInRow={lastInRowIndices.has(index)}
           />
         </div>

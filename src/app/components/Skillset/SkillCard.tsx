@@ -3,6 +3,7 @@
 import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import { skillData, SkillName } from "./skillData";
 
 // 1. CONTAINER VARIANTS
 const cardVariants: Variants = {
@@ -33,18 +34,25 @@ const textVariants: Variants = {
 };
 
 interface SkillCardProps {
-  name: string;
-  icon: string;
-  color: string;
+  skill: SkillName;
   isLastInRow?: boolean;
 }
 
 export default function SkillCard({
-  name,
-  icon,
-  color,
+  skill,
   isLastInRow = false,
 }: SkillCardProps) {
+  // Search the dictionary array for a matching skill
+  const foundSkill = skillData.find((s) => s.name === skill) || {
+    name: skill,
+    icon: "/placeholder.svg",
+    color: "#000000"
+  };
+
+  const finalName = foundSkill.name;
+  const finalIcon = foundSkill.icon;
+  const finalColor = foundSkill.color;
+
   return (
     <motion.div
       layout={!isLastInRow}
@@ -52,7 +60,7 @@ export default function SkillCard({
     >
       <motion.div
         variants={cardVariants}
-        custom={color}
+        custom={finalColor}
         initial="closed"
         whileHover="open"
         whileFocus="open"
@@ -73,11 +81,11 @@ export default function SkillCard({
         >
           <ItemMedia className="relative flex h-8 w-8 shrink-0 items-center justify-center sm:h-10 sm:w-10">
             <Image
-              src={icon || "/placeholder.svg"}
-              alt={name}
+              src={finalIcon}
+              alt={finalName}
               fill
               className={`object-contain transition-all duration-300 ${
-                name === "JavaScript" || name === "Motion"
+                finalName === "JavaScript" || finalName === "Motion"
                   ? "group-hover:brightness-0"
                   : "group-hover:brightness-0 group-hover:invert"
               }`}
@@ -92,12 +100,12 @@ export default function SkillCard({
             <ItemContent className="p-0">
               <ItemTitle
                 className={`text-sm font-medium text-black transition-colors duration-300 sm:text-base ${
-                  name === "JavaScript" || name === "Motion"
+                  finalName === "JavaScript" || finalName === "Motion"
                     ? "group-hover:text-black"
                     : "group-hover:text-white"
                 }`}
               >
-                {name}
+                {finalName}
               </ItemTitle>
             </ItemContent>
           </motion.div>

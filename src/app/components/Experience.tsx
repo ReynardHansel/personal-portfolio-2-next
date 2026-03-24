@@ -146,17 +146,9 @@ function DetailsSection() {
       </div> */}
 
       <motion.div className="flex scale-90 gap-3" variants={itemVariants}>
-        <SkillCard
-          name="NextJS"
-          icon={`/svg/logo/nextdotjs.svg`}
-          color="#000000"
-        />
-        <SkillCard name="Figma" icon={`/svg/logo/figma.svg`} color="#F24E1E" />
-        <SkillCard
-          name="Python"
-          icon={`/svg/logo/python.svg`}
-          color="#3776AB"
-        />
+        <SkillCard skill="NextJS" />
+        <SkillCard skill="Figma" />
+        <SkillCard skill="Python" />
       </motion.div>
 
       {/* Gradient Box Placeholder */}

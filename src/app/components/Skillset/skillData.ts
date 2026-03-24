@@ -20,6 +20,8 @@ const skillData = [
   { name: "Python", icon: `${logoPath}python.svg`, color: "#3776AB" },
   { name: "Java", icon: `${logoPath}java.svg`, color: "#ED2026" },
   { name: "Arduino", icon: `${logoPath}arduino.svg`, color: "#00878F" },
-];
+] as const;
+
+export type SkillName = (typeof skillData)[number]["name"];
 
 export { skillData };
