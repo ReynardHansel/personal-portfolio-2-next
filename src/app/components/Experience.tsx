@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/carousel";
 import Fade from "embla-carousel-fade";
 import Autoplay from "embla-carousel-autoplay";
+import { EXPERIENCES } from "@/data/exp";
+
+const experiences = EXPERIENCES;
 
 const containerVariants: Variants = {
   initial: { opacity: 0 },
@@ -30,7 +33,7 @@ export default function Experience() {
     <section className="flex w-full flex-col items-center justify-center gap-[5vh]">
       <Title>Experience</Title>
       <motion.div
-        className="space-around mt-[5vh] flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-[5vw] px-6 py-8 md:flex-row md:items-start md:px-[5%] md:py-0"
+        className="space-around mt-[5vh] flex h-full min-h-[80vh] w-full flex-col items-center justify-center gap-[5vw] px-6 py-8 md:flex-row md:items-start md:pl-[5%] md:py-0"
         initial="initial"
         animate="animate"
         whileInView="whileInView"
@@ -82,7 +85,7 @@ function ExperienceSection() {
         className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-neutral-500"
       >
         {/* <span className="h-2.5 w-2.5 rounded-full bg-neutral-600"></span> */}
-        2023 — PRESENT
+        {experiences[0].duration}
       </motion.div>
 
       {/* Company */}
@@ -90,16 +93,20 @@ function ExperienceSection() {
         variants={itemVariants}
         className="mt-10 text-[2.5rem] font-bold uppercase leading-none tracking-tight text-[#2d3334] sm:text-[3.25rem]"
       >
-        Apple Developer Academy
+        {experiences[0].company}
       </motion.p>
 
       {/* Job Title */}
-      <motion.p
-        variants={itemVariants}
-        className="mt-2 text-[1.3rem] font-light text-[#5a5f60]"
-      >
-        Junior iOS Developer
-      </motion.p>
+      {experiences[0].role.map((role) => (
+        <motion.p
+          variants={itemVariants}
+          className="mt-2 text-[1.3rem] font-light text-[#5a5f60]"
+        >
+          {role}
+        </motion.p>
+      ))}
+
+      <button onClick={() => console.log(experiences[0])}>Experiences</button>
     </motion.div>
   );
 }
@@ -128,9 +135,7 @@ function DetailsSection() {
         className="max-w-[42rem] text-[1.6rem] font-light leading-snug tracking-tight text-[#5a5f60]"
         variants={itemVariants}
       >
-        Engineering a unified visual language for decentralized infrastructure,
-        bridging the gap between complex blockchain protocols and intuitive user
-        interfaces.
+        {experiences[0].responsibility}
       </motion.p>
 
       {/* Tech Pills */}
@@ -146,16 +151,16 @@ function DetailsSection() {
       </div> */}
 
       <motion.div className="flex scale-90 gap-3" variants={itemVariants}>
-        <SkillCard skill="NextJS" />
-        <SkillCard skill="Figma" />
-        <SkillCard skill="Python" />
+        {experiences[0].techStack.map((skill) => (
+          <SkillCard key={skill} skill={skill} />
+        ))}
       </motion.div>
 
       {/* Gradient Box Placeholder */}
       {/* <div className="aspect-[16/10] w-[95%] rounded-md border border-neutral-300 bg-gradient-to-br from-neutral-200 to-neutral-400"></div> */}
       <motion.div className="w-full" variants={itemVariants}>
         <Carousel
-          className="w-[90%]"
+          className="w-full"
           // setApi={setApi}
           opts={{
             align: "start",
@@ -172,7 +177,20 @@ function DetailsSection() {
           ]}
         >
           <CarouselContent>
-            <CarouselItem>
+            {experiences[0].images.map((image) => (
+              console.log(image),
+              <CarouselItem key={image}>
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
+                  <Image
+                    src={image}
+                    alt={image}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+            {/* <CarouselItem>
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
                 <Image
                   src="/images/exp/bncc/1.jpg"
@@ -201,7 +219,7 @@ function DetailsSection() {
                   className="object-cover"
                 />
               </div>
-            </CarouselItem>
+            </CarouselItem> */}
           </CarouselContent>
         </Carousel>
       </motion.div>
