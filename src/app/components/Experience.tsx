@@ -52,16 +52,6 @@ export default function Experience() {
 }
 
 function ExperienceSection() {
-  // const containerVariants: Variants = {
-  //   initial: { opacity: 0 },
-  //   whileInView: {
-  //     opacity: 1,
-  //     transition: {
-  //       staggerChildren: 0.2,
-  //     },
-  //   },
-  // };
-
   const itemVariants: Variants = {
     initial: { opacity: 0, x: -50 },
     whileInView: {
@@ -190,36 +180,6 @@ function DetailsSection() {
                 </div>
               </CarouselItem>
             ))}
-            {/* <CarouselItem>
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
-                <Image
-                  src="/images/exp/bncc/1.jpg"
-                  alt="BNCC"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
-                <Image
-                  src="/images/exp/bncc/2.jpg"
-                  alt="BNCC"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </CarouselItem>
-            <CarouselItem>
-              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
-                <Image
-                  src="/images/exp/bncc/3.jpg"
-                  alt="BNCC"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </CarouselItem> */}
           </CarouselContent>
         </Carousel>
       </motion.div>
