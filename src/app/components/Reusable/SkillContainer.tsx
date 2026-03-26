@@ -1,21 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { cn } from "lib/utils";
+import { motion, Variants } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import SkillCard from "../Skillset/SkillCard";
 import { SkillName } from "../Skillset/skillData";
-
-type Skill = {
-  name: SkillName;
-  icon?: string;
-  color?: string;
-};
-
 interface SkillContainerProps {
-  skills: readonly Skill[];
+  skills: readonly SkillName[];
+  className?: string;
+  variants?: Variants;
 }
 
-export default function SkillContainer({skills}: SkillContainerProps) {
+export default function SkillContainer({skills, className, variants}: SkillContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [lastInRowIndices, setLastInRowIndices] = useState<Set<number>>(
@@ -85,7 +81,8 @@ export default function SkillContainer({skills}: SkillContainerProps) {
   return (
     <motion.div
       ref={containerRef}
-      className="flex max-w-5xl flex-wrap gap-4 px-[18%] sm:px-28"
+      className={cn("flex max-w-5xl flex-wrap gap-4 px-[18%] sm:px-28", className)}
+      variants={variants}
       layout
     >
       {skills.map((skill, index) => (
@@ -96,7 +93,7 @@ export default function SkillContainer({skills}: SkillContainerProps) {
           }}
         >
           <SkillCard
-            skill={skill.name}
+            skill={skill}
             isLastInRow={lastInRowIndices.has(index)}
           />
         </div>

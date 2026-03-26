@@ -26,7 +26,7 @@ export default function Skillset() {
         currently work with, while I keep learning and adding new tools to my
         belt.
       </p>
-      <SkillContainer skills={skillData} />
+      <SkillContainer skills={skillData.map((s) => s.name)} />
     </div>
   );
 }
