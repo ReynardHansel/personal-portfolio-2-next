@@ -17,7 +17,7 @@ export const EXPERIENCES: ExperienceData[] = [
     role: ["Junior iOS Developer"],
     duration: "Feb 2025 — Dec 2025",
     responsibility:
-      "Developed four applications across iOS and watchOS platforms and led a cross-functional team in delivering a tailored technical solution for an external FinTech partner.",
+      "Developed 4 applications across iOS and watchOS platforms and led a cross-functional team in delivering a tailored technical solution for an external FinTech partner.",
     techStack: ["Swift", "iOS", "AppStore", "Figma", "Miro", "Confluence"],
     images: [
       "/images/exp/ada/1.jpg",
@@ -40,7 +40,7 @@ export const EXPERIENCES: ExperienceData[] = [
     role: ["Research and Development Manager"],
     duration: "Sept 2023 — Feb 2025",
     responsibility:
-      "Orchestrated the delivery of three concurrent projects and increased team productivity by over 80% by leading agile scrums and bridging the communication gap between design and development teams.",
+      "Orchestrated the delivery of 3 concurrent projects and increased team productivity by over 80% by leading agile scrums and bridging the communication gap between design and development teams.",
     techStack: [
       "NextJS",
       "React",
@@ -67,7 +67,7 @@ export const EXPERIENCES: ExperienceData[] = [
     role: ["UI/UX Designer", "Junior System Analyst"],
     duration: "2018 — 2021",
     responsibility:
-      "Optimized digital product development by designing both intuitive user interfaces and end-to-end system flows, ensuring a seamless alignment between business logic, stakeholder vision, and technical execution.",
+      "Optimized digital product development by designing both intuitive user interfaces and end-to-end system flows for 3 clients, ensuring a seamless alignment between business logic, stakeholder vision, and technical execution.",
     techStack: ["Figma"],
     images: [],
   },
