@@ -2,13 +2,13 @@
 
 import { useRef, useState } from "react";
 import Title from "./Reusable/Title";
-import SkillCard from "./Skillset/SkillCard";
 import Image from "next/image";
 import {
   AnimatePresence,
   motion,
   useMotionValueEvent,
   useScroll,
+  useTransform,
   Variants,
 } from "framer-motion";
 
@@ -21,6 +21,7 @@ import Fade from "embla-carousel-fade";
 import Autoplay from "embla-carousel-autoplay";
 import { EXPERIENCES } from "@/data/exp";
 import type { ExperienceData } from "@/data/exp";
+import SkillContainer from "./Reusable/SkillContainer";
 
 const experiences = EXPERIENCES;
 
@@ -51,9 +52,12 @@ export default function Experience() {
     offset: ["start start", "end end"],
   });
 
+  // Output mapped string tracking exact relative distance to center the trailing dot
+  const dotPosition = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   // Calculate the active index dynamically as the user scrolls
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Map the 0-1 progress to the exact indices of our array
+    // Map the 0-1 progress to the exact indices of the array
     const newIndex = Math.round(latest * (experiences.length - 1));
     if (newIndex !== activeIndex) {
       setActiveIndex(newIndex);
@@ -79,8 +83,17 @@ export default function Experience() {
             />
           </AnimatePresence>
 
-          {/* Divider Line */}
-          <div className="hidden w-0.5 self-stretch bg-black md:block"></div>
+          {/* Scroll Progress Meter */}
+          <div className="relative hidden w-0.5 self-stretch overflow-visible rounded-full bg-neutral-200 md:block">
+            <motion.div
+              className="absolute inset-0 origin-top rounded-full bg-black"
+              style={{ scaleY: scrollYProgress }}
+            />
+            <motion.div
+              className="absolute left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-white bg-black shadow-sm"
+              style={{ top: dotPosition }}
+            />
+          </div>
 
           <AnimatePresence mode="wait">
             <DetailsSection
@@ -105,7 +118,6 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
         ease: [0.16, 1, 0.3, 1],
       },
     },
-    // The key logic: Exit back to the left
     exit: {
       opacity: 0,
       x: -50,
@@ -124,7 +136,7 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
       {/* Duration */}
       <motion.div
         variants={itemVariants}
-        className="flex items-center gap-3 text-sm font-semibold uppercase tracking-widest text-neutral-500"
+        className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-neutral-500 sm:text-sm"
       >
         {experience.duration}
       </motion.div>
@@ -132,7 +144,7 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
       {/* Company */}
       <motion.p
         variants={itemVariants}
-        className="mt-10 text-[2.5rem] font-bold uppercase leading-none tracking-tight text-[#2d3334] sm:text-[3.25rem]"
+        className="mt-6 text-[2rem] font-bold uppercase leading-none tracking-tight text-[#2d3334] sm:mt-10 sm:text-[2.5rem] lg:text-[3.25rem]"
       >
         {experience.company}
       </motion.p>
@@ -142,7 +154,7 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
         <motion.p
           key={idx}
           variants={itemVariants}
-          className="mt-2 text-[1.3rem] font-light text-[#5a5f60]"
+          className="mt-1 text-lg font-light text-[#5a5f60] sm:mt-2 sm:text-[1.3rem]"
         >
           {roleStr}
         </motion.p>
@@ -162,7 +174,6 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
         ease: [0.16, 1, 0.3, 1],
       },
     },
-    // The key logic: Exit back to the right
     exit: {
       opacity: 0,
       x: 50,
@@ -180,17 +191,17 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
     >
       {/* Responsibility Text */}
       <motion.p
-        className="max-w-[42rem] text-[1.6rem] font-light leading-snug tracking-tight text-[#5a5f60]"
+        className="max-w-[42rem] text-base font-light leading-relaxed tracking-tight text-[#5a5f60] sm:text-lg md:text-xl lg:text-[1.6rem] lg:leading-snug"
         variants={itemVariants}
       >
         {experience.responsibility}
       </motion.p>
 
-      <motion.div className="flex scale-90 gap-3" variants={itemVariants}>
-        {experience.techStack.map((skill) => (
-          <SkillCard key={skill} skill={skill} />
-        ))}
-      </motion.div>
+      <SkillContainer
+        skills={experience.techStack}
+        variants={itemVariants}
+        className="origin-left scale-75 flex-wrap gap-2 px-0 sm:scale-90 sm:gap-3 sm:px-0 md:scale-100"
+      />
 
       <motion.div className="w-full" variants={itemVariants}>
         <Carousel
