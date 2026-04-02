@@ -22,6 +22,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { EXPERIENCES } from "@/data/exp";
 import type { ExperienceData } from "@/data/exp";
 import SkillContainer from "./Reusable/SkillContainer";
+import { IoLockClosedSharp } from "react-icons/io5";
 
 const experiences = EXPERIENCES;
 
@@ -74,7 +75,7 @@ export default function Experience() {
       <Title>Experience</Title>
       {/* Sticky container stays snapped to the screen! */}
       <div className="sticky top-0 flex h-screen max-h-[90vh] w-full flex-col items-center justify-center gap-[5vh] overflow-hidden border-none bg-white py-12">
-        <div className="flex h-full w-full flex-col items-start justify-center gap-[5vw] px-6 md:flex-row md:px-[5%]">
+        <div className="flex h-full w-full flex-col items-start justify-center gap-[5vw] px-6 md:flex-row md:items-stretch md:px-[5%]">
           {/* AnimatePresence handles mounting/unmounting components safely so exit variants have time to fire */}
           <AnimatePresence mode="wait">
             <ExperienceSection
@@ -84,7 +85,7 @@ export default function Experience() {
           </AnimatePresence>
 
           {/* Scroll Progress Meter */}
-          <div className="relative hidden w-0.5 self-stretch overflow-visible rounded-full bg-neutral-200 md:block">
+          <div className="relative hidden w-0.5 overflow-visible rounded-full bg-neutral-200 md:block">
             <motion.div
               className="absolute inset-0 origin-top rounded-full bg-black"
               style={{ scaleY: scrollYProgress }}
@@ -114,7 +115,7 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -127,7 +128,7 @@ function ExperienceSection({ experience }: { experience: ExperienceData }) {
 
   return (
     <motion.div
-      className="flex flex-1 flex-col items-start justify-center md:py-10"
+      className="flex flex-1 flex-col items-start justify-center self-start md:py-10"
       variants={containerVariants}
       initial="initial"
       animate="animate"
@@ -170,7 +171,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.5,
         ease: [0.16, 1, 0.3, 1],
       },
     },
@@ -183,7 +184,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
 
   return (
     <motion.div
-      className="flex w-full flex-[2] flex-col items-start justify-between gap-[4vh] pt-8 md:pt-6"
+      className="flex max-h-full w-full flex-[2] flex-col items-start justify-between gap-[4vh] pt-8 md:pt-6"
       variants={containerVariants}
       initial="initial"
       animate="animate"
@@ -191,7 +192,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
     >
       {/* Responsibility Text */}
       <motion.p
-        className="max-w-[42rem] text-base font-light leading-relaxed tracking-tight text-[#5a5f60] sm:text-lg md:text-xl lg:text-[1.6rem] lg:leading-snug"
+        className="max-w-[42rem] text-base font-light leading-relaxed tracking-tight text-[#5a5f60] sm:text-lg md:text-lg lg:leading-snug xl:text-[1.5rem]"
         variants={itemVariants}
       >
         {experience.responsibility}
@@ -200,41 +201,63 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
       <SkillContainer
         skills={experience.techStack}
         variants={itemVariants}
-        className="origin-left scale-75 flex-wrap gap-2 px-0 sm:scale-90 sm:gap-3 sm:px-0 md:scale-100"
+        className="max-w-[70%] origin-left scale-50 flex-wrap gap-2 px-0 sm:scale-90 sm:gap-3 sm:px-0 md:scale-100"
       />
 
-      <motion.div className="w-full" variants={itemVariants}>
-        <Carousel
-          className="w-full"
-          opts={{
-            align: "start",
-            loop: true,
-            containScroll: false,
-            duration: 50,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 5000,
-              stopOnInteraction: false,
-            }),
-            Fade(),
-          ]}
-        >
-          <CarouselContent>
-            {experience.images.map((image) => (
-              <CarouselItem key={image}>
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-neutral-300">
-                  <Image
-                    src={image}
-                    alt={`${experience.company} image`}
-                    fill
-                    className="relative object-cover"
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+      <motion.div
+        className="relative flex min-h-[30vh] w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-300 md:max-w-[95%]"
+        variants={itemVariants}
+      >
+        {experience.images && experience.images.length > 0 ? (
+          //* If there's an image
+          <Carousel
+            className="absolute inset-0 h-full w-full [&>div]:h-full"
+            opts={{
+              align: "start",
+              loop: true,
+              containScroll: false,
+              duration: 50,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: false,
+              }),
+              Fade(),
+            ]}
+          >
+            <CarouselContent className="h-full">
+              {experience.images.map((image) => (
+                <CarouselItem key={image} className="h-full">
+                  <div className="relative h-full w-full bg-neutral-100">
+                    <Image
+                      src={image}
+                      alt={`${experience.company} image`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        ) : (
+          //* If there's no image
+          <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-neutral-100/50 px-4">
+            <div className="absolute inset-0 [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] dark:[background-image:linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] sm:[background-size:20px_20px] md:[background-size:24px_24px]" />
+
+            {/* Radial Fade effect */}
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+
+            {/* Content */}
+            <div className="relative flex h-full w-full items-center justify-center gap-3 text-neutral-400">
+              <IoLockClosedSharp className="text-[150%] mb-[.5%]" />
+              <p className="text-center text-[150%] font-medium uppercase tracking-[30%]">
+                Proprietary Work
+              </p>
+            </div>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
