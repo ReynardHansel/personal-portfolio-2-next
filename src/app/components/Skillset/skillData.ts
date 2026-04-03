@@ -20,6 +20,14 @@ const skillData = [
   { name: "Python", icon: `${logoPath}python.svg`, color: "#3776AB" },
   { name: "Java", icon: `${logoPath}java.svg`, color: "#ED2026" },
   { name: "Arduino", icon: `${logoPath}arduino.svg`, color: "#00878F" },
-];
+  { name: "Flutter", icon: `${logoPath}flutter.svg`, color: "#02569B" },
+  { name: "Swift", icon: `${logoPath}swift.svg`, color: "#F05138" },
+  { name: "AppStore", icon: `${logoPath}appstore.svg`, color: "#0D96F6" },
+  { name: "iOS", icon: `${logoPath}ios.svg`, color: "#000000" },
+  { name: "Confluence", icon: `${logoPath}confluence.svg`, color: "#2684FF" },
+  { name: "Miro", icon: `${logoPath}miro.svg`, color: "#FFD02F" },
+] as const;
+
+export type SkillName = (typeof skillData)[number]["name"];
 
 export { skillData };

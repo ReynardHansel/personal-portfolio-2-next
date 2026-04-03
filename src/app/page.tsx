@@ -1,7 +1,7 @@
-import About from "./components/About";
 import Contact from "./components/Contact";
+import Experience from "./components/Experience";
 import Footer from "./components/Footer";
-import Hero from "./components/Hero";
+import HeroAbout from "./components/HeroAbout";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skillset from "./components/Skillset";
@@ -9,15 +9,17 @@ import Skillset from "./components/Skillset";
 
 export default function Home() {
   return (
-  <div className="overflow-x-hidden bg-white">
-    <Navbar />
-    <Hero />
-    <About />
-    <Skillset />
-    <Projects />
-    {/* <UnderDevelopment /> */}
-    <Contact />
-    <Footer />
-  </div>
+    <div className="flex flex-col items-center overflow-x-clip bg-white">
+      <Navbar />
+      {/* <Hero /> */}
+      {/* <About /> */}
+      <HeroAbout />
+      <Skillset />
+      <Experience />
+      <Projects />
+      {/* <UnderDevelopment /> */}
+      <Contact />
+      <Footer />
+    </div>
   );
 }

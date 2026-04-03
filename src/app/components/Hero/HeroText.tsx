@@ -1,6 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { FlipWords } from "../ui/flip-words";
-import { Button } from "@/components/ui/button";
 import ButtonGradient from "../Reusable/ButtonGradient";
 import Link from "next/link";
 
@@ -62,18 +63,18 @@ export default function HeroText() {
         Hi, I'm <FlipWords words={words} />
       </motion.h1>
 
-      <motion.p
+      {/* <motion.p
         variants={childVariants}
         className="text-center font-plus-jakarta-sans text-lg tracking-wider text-neutral-600 dark:text-neutral-400 sm:text-left md:text-lg lg:text-xl"
       >
         "A software engineer specializing on Front-End Web Development, who
         loves to bridge the gap between beautiful design and seamless
         functionality to create exceptional user experiences"
-      </motion.p>
+      </motion.p> */}
 
-      <ButtonGradient className="ml-2">
+      {/* <ButtonGradient className="ml-2">
         <Link href="#contact">Contact Me</Link>
-      </ButtonGradient>
+      </ButtonGradient> */}
 
       {/* <motion.button
           className="text-porto_purple border-porto_purple ml-2 rounded-full border-2 bg-transparent bg-gradient-to-r px-5 py-3 font-semibold tracking-wide transition-all duration-200 hover:from-[#5060F0] hover:to-[#6E7AEA] hover:text-white md:text-xl"

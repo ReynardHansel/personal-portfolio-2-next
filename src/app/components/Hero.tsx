@@ -1,8 +1,6 @@
-"use client";
 import { HeroHighlight } from "./ui/hero-highlight";
 import HeroImage from "./Hero/HeroImage";
 import HeroText from "./Hero/HeroText";
-import Navbar from "./Navbar";
 
 export default function Hero() {
   return (

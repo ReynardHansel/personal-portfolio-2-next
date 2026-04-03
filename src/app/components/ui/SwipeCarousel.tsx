@@ -2,6 +2,7 @@
 
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 10;
@@ -16,6 +17,7 @@ const SPRING_OPTIONS = {
 
 interface SwipeCarouselProps {
   imgs: string[];
+  className?: string;
 }
 
 // const imgs = [
@@ -24,7 +26,7 @@ interface SwipeCarouselProps {
 //   "/images/projects/bncc/3.png",
 // ];
 
-export const SwipeCarousel = ({ imgs }: SwipeCarouselProps) => {
+export const SwipeCarousel = ({ imgs, className }: SwipeCarouselProps) => {
   const [imgIndex, setImgIndex] = useState(0);
 
   const dragX = useMotionValue(0);
@@ -57,7 +59,7 @@ export const SwipeCarousel = ({ imgs }: SwipeCarouselProps) => {
   };
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-transparent">
+    <div className={cn("relative overflow-hidden bg-transparent", className)}>
       <motion.div
         drag="x"
         dragConstraints={{

@@ -43,13 +43,13 @@ export default function AboutText() {
       className="relative flex flex-col font-plus-jakarta-sans gap-6 tracking-wider md:w-[55%] lg:text-[1.08rem]"
     >
       {/* MOBILE div */}
-      <div className="flex justify-between md:hidden">
+      {/* <div className="flex justify-between md:hidden">
         <Title>
           <p>About Me</p>
         </Title>
-      </div>
+      </div> */}
 
-      <Title className="hidden md:flex">About Me</Title>
+      {/* <Title className="hidden md:flex">About Me</Title> */}
       <motion.p variants={textVariants}>
         Hi! I'm Reynard, an undergraduate student at BINUS University with a
         passion for Web and Software Development, specializing in Front-End Web
