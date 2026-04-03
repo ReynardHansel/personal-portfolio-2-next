@@ -36,17 +36,19 @@ const textVariants: Variants = {
 interface SkillCardProps {
   skill: SkillName;
   isLastInRow?: boolean;
+  index: number;
 }
 
 export default function SkillCard({
   skill,
   isLastInRow = false,
+  index,
 }: SkillCardProps) {
   // Search the dictionary array for a matching skill
   const foundSkill = skillData.find((s) => s.name === skill) || {
     name: skill,
     icon: "/placeholder.svg",
-    color: "#000000"
+    color: "#000000",
   };
 
   const finalName = foundSkill.name;
@@ -67,13 +69,11 @@ export default function SkillCard({
         layout
         // FIX 1: Added 'w-max' (width: max-content).
         // This stops the absolute container from squashing/wrapping its content.
-        className={`
-           group flex items-center rounded-md w-max
-           ${isLastInRow 
-             ? "absolute left-0 h-fit" 
-             : "relative h-full z-10"
-           }
-        `}
+        className={`group flex w-max items-center rounded-md ${
+          isLastInRow && index !== 0
+            ? "absolute left-0 h-fit"
+            : "relative z-10 h-full"
+        } `}
       >
         <Item
           variant="outline"

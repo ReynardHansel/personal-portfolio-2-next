@@ -11,7 +11,11 @@ interface SkillContainerProps {
   variants?: Variants;
 }
 
-export default function SkillContainer({skills, className, variants}: SkillContainerProps) {
+export default function SkillContainer({
+  skills,
+  className,
+  variants,
+}: SkillContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [lastInRowIndices, setLastInRowIndices] = useState<Set<number>>(
@@ -81,7 +85,10 @@ export default function SkillContainer({skills, className, variants}: SkillConta
   return (
     <motion.div
       ref={containerRef}
-      className={cn("flex max-w-5xl flex-wrap gap-4 px-[18%] sm:px-28", className)}
+      className={cn(
+        "inline-flex max-w-5xl flex-wrap gap-4 px-[18%] sm:px-28",
+        className,
+      )}
       variants={variants}
       layout
     >
@@ -92,10 +99,7 @@ export default function SkillContainer({skills, className, variants}: SkillConta
             cardRefs.current[index] = el;
           }}
         >
-          <SkillCard
-            skill={skill}
-            isLastInRow={lastInRowIndices.has(index)}
-          />
+          <SkillCard skill={skill} isLastInRow={lastInRowIndices.has(index)} index={index} />
         </div>
       ))}
     </motion.div>

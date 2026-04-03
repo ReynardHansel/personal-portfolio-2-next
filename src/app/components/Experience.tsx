@@ -198,6 +198,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
         {experience.responsibility}
       </motion.p>
 
+      {/* Tech Stacks */}
       <SkillContainer
         skills={experience.techStack}
         variants={itemVariants}
@@ -211,7 +212,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
         {experience.images && experience.images.length > 0 ? (
           //* If there's an image
           <Carousel
-            className="absolute inset-0 h-full w-full [&>div]:h-full"
+            className="h-full w-full [&>div]:h-full"
             opts={{
               align: "start",
               loop: true,
@@ -243,7 +244,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
           </Carousel>
         ) : (
           //* If there's no image
-          <div className="absolute inset-0 flex h-full w-full flex-col items-center justify-center bg-neutral-100/50 px-4">
+          <div className="flex h-full w-full flex-col items-center justify-center bg-neutral-100/50 px-4">
             <div className="absolute inset-0 [background-image:linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] dark:[background-image:linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] sm:[background-size:20px_20px] md:[background-size:24px_24px]" />
 
             {/* Radial Fade effect */}
@@ -251,7 +252,7 @@ function DetailsSection({ experience }: { experience: ExperienceData }) {
 
             {/* Content */}
             <div className="relative flex h-full w-full items-center justify-center gap-3 text-neutral-400">
-              <IoLockClosedSharp className="text-[150%] mb-[.5%]" />
+              <IoLockClosedSharp className="mb-[.5%] text-[150%]" />
               <p className="text-center text-[150%] font-medium uppercase tracking-[30%]">
                 Proprietary Work
               </p>
