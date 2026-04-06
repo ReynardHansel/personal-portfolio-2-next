@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import Title from "./Reusable/Title";
 import {
-  motion,
   AnimatePresence,
   useMotionValueEvent,
   useScroll,
@@ -12,7 +11,7 @@ import {
 import { EXPERIENCES } from "@/data/exp";
 import ExperienceSection from "./Experience/ExperienceSection";
 import DetailsSection from "./Experience/DetailsSection";
-import { Separator } from "@radix-ui/react-separator";
+import ProgressMeter from "./Experience/ProgressMeter";
 
 const experiences = EXPERIENCES;
 
@@ -53,30 +52,12 @@ export default function Experience() {
             />
           </AnimatePresence>
 
-          {/* Scroll Progress Meter */}
-          <div className="relative hidden w-0.5 overflow-visible rounded-full bg-neutral-200 md:block">
-            {/* Black Track */}
-            <motion.div
-              className="absolute inset-0 origin-top rounded-full bg-black"
-              style={{ scaleY: scrollYProgress }}
-            />
-
-            {/* Black Dot */}
-            <motion.div
-              className="absolute left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-white bg-black shadow-sm"
-              style={{ top: dotPosition }}
-            >
-              <motion.div className="absolute right-[calc(100%+1em)] top-1/2 -translate-y-1/2 whitespace-nowrap text-right">
-                <p className="text-sm font-medium">
-                  {experiences[activeIndex].company}
-                </p>
-                <Separator />
-                <p className="text-xs text-neutral-500">
-                  {experiences[activeIndex].duration}
-                </p>
-              </motion.div>
-            </motion.div>
-          </div>
+          <ProgressMeter
+            scrollYProgress={scrollYProgress}
+            dotPosition={dotPosition}
+            activeIndex={activeIndex}
+            experiences={experiences}
+          />
 
           {/* Details Section */}
           <AnimatePresence mode="wait">
