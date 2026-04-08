@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, useMotionValueEvent, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionValueEvent,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 import { MotionValue } from "framer-motion";
 import { ExperienceData } from "@/data/exp";
 import { useEffect, useRef } from "react";
@@ -51,17 +56,27 @@ export default function ProgressMeter({
         style={{ top: dotPosition }}
       >
         {/* Experience Info */}
-        <motion.div
-          className="absolute right-[calc(100%+1em)] top-1/2 -translate-y-1/2 whitespace-nowrap text-right"
-          style={{ opacity }}
-        >
-          <p className="text-sm font-medium">
-            {experiences[activeIndex].company}
-          </p>
-          <p className="text-xs text-neutral-500">
-            {experiences[activeIndex].duration}
-          </p>
-        </motion.div>
+        <AnimatePresence mode="wait">
+          {/* Fade in/out on activeIndex change */}
+          <motion.div
+            key={activeIndex}
+            initial={{ opacity: 0, y: "70%", scale: 0.95 }}
+            animate={{ opacity: 1, y: "-50%", scale: 1 }}
+            exit={{ opacity: 0, y: "-100%", scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute right-[calc(100%+1em)] top-1/2 -translate-y-1/2 whitespace-nowrap text-right"
+          >
+            {/* Scroll visibility (spring-based) */}
+            <motion.div style={{ opacity }}>
+              <p className="text-sm font-medium">
+                {experiences[activeIndex].company}
+              </p>
+              <p className="text-xs text-neutral-500">
+                {experiences[activeIndex].duration}
+              </p>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
     </div>
   );
