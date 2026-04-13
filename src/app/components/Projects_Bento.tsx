@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Masonry from "react-masonry-css";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -73,55 +74,66 @@ export default function Projects_Bento() {
         className="-ml-4 flex w-full max-w-6xl"
         columnClassName="pl-4 bg-clip-padding"
       >
-        {items.map((item) => (
-          <motion.div
-            key={item.id}
-            className="group relative mb-4 w-full overflow-hidden rounded-xl"
-            style={{ aspectRatio: item.aspect }}
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Image wrapper - scales the image on hover for zoom effect */}
+        {items.map((item) => {
+          const [isHovered, setIsHovered] = useState(false);
+          return (
             <motion.div
-              className="absolute inset-0"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.5 }}
+              key={item.id}
+              className="group relative mb-4 w-full overflow-hidden rounded-xl"
+              style={{ aspectRatio: item.aspect }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="rounded-xl object-cover"
+              {/* Image wrapper - scales the image on hover for zoom effect */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{ scale: isHovered ? 1.05 : 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="rounded-xl object-cover"
+                />
+              </motion.div>
+
+              {/* Gradient overlay - dark at bottom, transparent at top; always visible for text readability */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.3 }}
               />
+
+              {/* Dark overlay - always present for extra contrast at the top */}
+              <div className="absolute inset-0 bg-black/20" />
+
+              {/* Title text - always there by default, moves up on hover */}
+              <motion.h3
+                className="absolute bottom-0 left-0 right-0 p-4 font-semibold text-white"
+                animate={{ y: isHovered ? -24 : 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {item.title}
+              </motion.h3>
+
+              {/* Description text - slides up from below and fades in on hover */}
+              <motion.p
+                className="absolute bottom-0 left-0 right-0 p-4 text-sm text-white/80"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{
+                  y: isHovered ? 0 : 20,
+                  opacity: isHovered ? 1 : 0,
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                The project description
+              </motion.p>
             </motion.div>
-
-            {/* Gradient overlay - dark at bottom, transparent at top; always visible for text readability */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-              initial={{ opacity: 1 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-
-            {/* Dark overlay - starts invisible, fades in on hover for extra contrast */}
-            <motion.div
-              className="absolute inset-0 bg-black/30"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-
-            {/* Title text - slides up and fades in on hover */}
-            <motion.div
-              className="absolute bottom-0 left-0 right-0 p-4 text-white"
-              initial={{ y: 10, opacity: 0 }}
-              whileHover={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h3 className="font-semibold">{item.title}</h3>
-            </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </Masonry>
     </div>
   );
