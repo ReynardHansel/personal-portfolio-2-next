@@ -6,7 +6,7 @@ function isValidUrl(url: string) {
 }
 
 type ProjectDetailsProps = {
-  techstack: string;
+  techstack?: string;
   newLearned: string;
   github: string;
   website?: string;
@@ -22,10 +22,12 @@ export default function ProjectDetails({
 }: ProjectDetailsProps) {
   return (
     <div className="mt-6 hidden flex-col pl-4 lg:flex">
-      <div className="flex items-center gap-3 tracking-widest">
-        <p className="text-lg font-medium">Techstack:</p>
-        <p className="text-gray-500">{techstack}</p>
-      </div>
+      {techstack && (
+        <div className="flex items-center gap-3 tracking-widest">
+          <p className="text-lg font-medium">Techstack:</p>
+          <p className="text-gray-500">{techstack}</p>
+        </div>
+      )}
       <div className="flex items-center gap-3 tracking-widest">
         <p className="text-lg font-medium">New:</p>
         <p className="text-gray-500">{newLearned}</p>

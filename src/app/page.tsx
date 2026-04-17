@@ -3,7 +3,7 @@ import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import HeroAbout from "./components/HeroAbout";
 import Navbar from "./components/Navbar";
-import Projects from "./components/Projects";
+// import Projects from "./components/Projects";
 import Projects_Bento from "./components/Projects_Bento";
 import Skillset from "./components/Skillset";
 // import UnderDevelopment from "./components/UnderDevelopment";
