@@ -3,11 +3,10 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { content } from "@/data/projects";
+import { projectsBento } from "@/data/projects_bento";
 import Link from "next/link";
 import Image from "next/image";
 import SkillCard from "@/app/components/Skillset/SkillCard";
-import { SkillName } from "@/app/components/Skillset/skillData";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -48,7 +47,7 @@ export default function ProjectPage() {
   const { id } = useParams();
   const router = useRouter();
   const projectIndex = parseInt(id as string, 10) - 1;
-  const project = content[projectIndex];
+  const project = projectsBento[projectIndex];
 
   if (!project) {
     return (
@@ -89,7 +88,7 @@ export default function ProjectPage() {
         <div className="flex min-h-[40vh] flex-col justify-between p-8 lg:min-h-[55vh] lg:p-16">
           <div className="flex justify-between text-xs font-semibold uppercase tracking-widest text-neutral-500">
             <span>ID: #{String(project.id).padStart(3, "0")}</span>
-            <span>Year: 2024</span>
+            <span>Year: {project.year}</span>
           </div>
 
           <div>
@@ -100,15 +99,15 @@ export default function ProjectPage() {
             <div className="grid grid-cols-3 gap-8 text-xs font-semibold uppercase tracking-widest text-neutral-500">
               <div>
                 <span className="mb-1 block text-neutral-400">Role</span>
-                <span className="text-[#2d3334]">Lead Designer</span>
+                <span className="text-[#2d3334]">{project.role}</span>
               </div>
               <div>
                 <span className="mb-1 block text-neutral-400">Location</span>
-                <span className="text-[#2d3334]">Remote</span>
+                <span className="text-[#2d3334]">{project.location}</span>
               </div>
               <div>
                 <span className="mb-1 block text-neutral-400">Status</span>
-                <span className="text-porto_purple">Completed</span>
+                <span className="text-porto_purple">{project.status}</span>
               </div>
             </div>
           </div>
@@ -143,8 +142,7 @@ export default function ProjectPage() {
                   Architectural Logic
                 </h4>
                 <p className="font-nunito-sans text-[#5a5f60]">
-                  Component-based architecture with emphasis on performance and
-                  scalability.
+                  {project.architecturalLogic}
                 </p>
               </div>
 
@@ -153,17 +151,25 @@ export default function ProjectPage() {
                   System Integration
                 </h4>
                 <div className="flex flex-wrap gap-3">
-                  {(
-                    ["React", "NextJS", "Tailwind", "TypeScript"] as SkillName[]
-                  ).map((skill, index) => (
+                  {project.skills.map((skill, index) => (
                     <SkillCard key={skill} skill={skill} index={index} />
                   ))}
                 </div>
               </div>
 
               <div className="flex flex-col gap-3">
-                <ActionLink href="/#projects">Source Repo</ActionLink>
-                <ActionLink href="/#projects">Live Demo</ActionLink>
+                {project.sourceRepo && (
+                  <ActionLink href={project.sourceRepo}>Source Repo</ActionLink>
+                )}
+                {project.liveDemo && (
+                  <ActionLink href={project.liveDemo}>Live Demo</ActionLink>
+                )}
+                {!project.sourceRepo && !project.liveDemo && (
+                  <>
+                    <ActionLink href="/#projects">Source Repo</ActionLink>
+                    <ActionLink href="/#projects">Live Demo</ActionLink>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>
@@ -203,12 +209,11 @@ export default function ProjectPage() {
               <SectionTitle>Evaluation</SectionTitle>
               <blockquote className="rounded-lg border border-neutral-300 p-6">
                 <p className="mb-4 font-nunito-sans text-lg text-[#2d3334]">
-                  "A thoughtful design that prioritizes user experience through
-                  clean architecture."
+                  "{project.quote}"
                 </p>
                 <div className="flex items-center gap-3 text-xs font-semibold uppercase text-neutral-500">
                   <div className="h-0.5 w-6 rounded-full bg-porto_purple" />
-                  <span>Client Review</span>
+                  <span>{project.quoteAuthor}</span>
                 </div>
               </blockquote>
             </motion.div>
@@ -220,8 +225,7 @@ export default function ProjectPage() {
                   Key Takeaways
                 </h4>
                 <p className="font-nunito-sans text-sm text-[#5a5f60]">
-                  Simplified architecture leads to better maintainability and
-                  user satisfaction.
+                  {project.keyTakeaways}
                 </p>
               </div>
               <div className="flex items-center justify-between rounded-lg bg-neutral-50 px-4 py-3 text-xs font-semibold uppercase text-neutral-600">
