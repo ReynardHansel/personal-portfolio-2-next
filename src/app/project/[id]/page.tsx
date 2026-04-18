@@ -1,266 +1,298 @@
 "use client";
 
+import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { content } from "@/data/projects";
 import Link from "next/link";
-import { useEffect } from "react";
+import Image from "next/image";
+import SkillCard from "@/app/components/Skillset/SkillCard";
+import { SkillName } from "@/app/components/Skillset/skillData";
 
-// Layout constants - to map to brutalist design
-const BORDER = "border-neutral-200";
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
 
-// Basic icons to replace the ones in SYSTEM INTEGRATION
-const icon1 = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l4 10-4 10-4-10 4-10z"/></svg>
-);
-const icon2 = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-);
-const icon3 = (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v6"/><path d="M9 18h6"/><path d="M6 9v9a2 2 0 0 0 2 2h10"/></svg>
-);
-const icon4 = (
-  <span className="text-xs font-mono font-bold tracking-widest">BIM</span>
-);
-const icons = [icon1, icon2, icon3, icon4];
+function ImageWithLoading({
+  src,
+  alt,
+  idx,
+}: {
+  src: string;
+  alt: string;
+  idx: number;
+}) {
+  const [isLoading, setIsLoading] = useState(true);
 
-// SVG for the diagonal arrow
-const arrowIcon = (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-);
+  return (
+    <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-neutral-300 bg-neutral-100">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center text-sm text-neutral-500">
+          loading image {idx}
+        </div>
+      )}
+      <Image
+        src={src}
+        fill
+        className="object-cover transition-transform duration-500 hover:scale-105"
+        alt={alt}
+        onLoad={() => setIsLoading(false)}
+      />
+    </div>
+  );
+}
 
 export default function ProjectPage() {
-  const params = useParams();
-  const id = params.id as string;
-  const projectIndex = parseInt(id, 10) - 1;
+  const { id } = useParams();
   const router = useRouter();
+  const projectIndex = parseInt(id as string, 10) - 1;
+  const project = content[projectIndex];
 
-  // Scroll to top on mount just in case
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Handle invalid index
-  if (projectIndex < 0 || projectIndex >= content.length) {
+  if (!project) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#FDFDFD] px-6 selection:bg-neutral-900 selection:text-white">
-        <h1 className="text-sm font-mono uppercase tracking-widest text-neutral-500 mb-8">
-          SYSTEM ERROR: RESOURCE NOT ATTACHED
+      <div className="flex min-h-screen flex-col items-center justify-center bg-white">
+        <h1 className="mb-4 text-sm font-semibold uppercase tracking-widest text-neutral-500">
+          Project Not Found
         </h1>
         <button
           onClick={() => router.push("/#projects")}
-          className="border border-neutral-300 px-6 py-3 text-xs font-mono font-bold tracking-widest transition-colors hover:bg-neutral-100 uppercase"
+          className="rounded-md border border-neutral-300 px-6 py-3 text-xs font-semibold uppercase tracking-widest transition-colors hover:border-porto_purple hover:bg-porto_purple hover:text-white"
         >
-          BACK TO ROOT
+          Back to Projects
         </button>
       </div>
     );
   }
 
-  const project = content[projectIndex];
-  
   return (
-    <motion.div 
-      initial={{ opacity: 0, filter: "blur(4px)" }}
-      animate={{ opacity: 1, filter: "blur(0px)" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`min-h-screen bg-[#FDFDFD] text-neutral-900 font-sans selection:bg-neutral-900 selection:text-white flex flex-col`}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-screen bg-white font-plus-jakarta-sans text-[#2d3334]"
     >
-      {/* Header */}
-      <header className={`flex justify-between items-center px-6 lg:px-10 py-6 border-b ${BORDER} text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase`}>
-         <div className="whitespace-nowrap">THE ARCHITECT // LOG</div>
-         <div className="hidden md:flex gap-8 lg:gap-12 text-neutral-500">
-           <Link href="/#projects" className="hover:text-black transition-colors">PROJECTS</Link>
-           <Link href="#" className="hover:text-black transition-colors">ARCHIVE</Link>
-           <Link href="/#contact" className="hover:text-black transition-colors">CONTACT</Link>
-         </div>
-         <div className="flex items-center gap-6 lg:gap-8">
-           <span className="text-neutral-400 hidden sm:inline-block">VER. 2.4.0</span>
-           <button onClick={() => router.push("/#projects")} className="bg-neutral-900 text-white px-5 py-2.5 hover:bg-neutral-800 transition-colors">CONNECT</button>
-         </div>
-      </header>
+      {/* Hero */}
+      <section className="grid grid-cols-1 border-b border-neutral-300 lg:grid-cols-3">
+        {/* Hero Image */}
+        <div className="relative min-h-[50vh] overflow-hidden border-neutral-300 bg-neutral-100 lg:min-h-[70vh] lg:border-r">
+          <Image
+            src={project.images?.[0] || `/placeholder.svg`}
+            fill
+            className="object-cover"
+            alt={project.title}
+            priority
+          />
+        </div>
 
-      {/* Main Grid */}
-      <main className="flex-grow flex flex-col">
-        {/* ROW 1: Hero */}
-        <div className={`grid grid-cols-1 lg:grid-cols-3 border-b ${BORDER}`}>
-          {/* Left Hero (Image) */}
-          <div className={`col-span-1 border-b lg:border-b-0 lg:border-r ${BORDER} relative min-h-[50vh] lg:min-h-[70vh] bg-neutral-100 overflow-hidden`}>
-             <img 
-               src={project.images?.[0] || `https://picsum.photos/seed/${project.id * 8}/800/800`} 
-               className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 transition-transform duration-1000 hover:scale-105" 
-               alt={`${project.title} Hero`} 
-             />
+        {/* Hero Content */}
+        <div className="flex min-h-[50vh] flex-col justify-between p-8 lg:col-span-2 lg:min-h-[70vh] lg:p-16">
+          <div className="flex justify-between text-xs font-semibold uppercase tracking-widest text-neutral-500">
+            <span>ID: #{String(project.id).padStart(3, "0")}</span>
+            <span>Year: 2024</span>
           </div>
-          {/* Right Hero (Text) */}
-          <div className="col-span-2 p-8 sm:p-12 lg:p-16 flex flex-col justify-between min-h-[50vh] lg:min-h-[70vh]">
-             {/* Top Meta */}
-             <div className="flex justify-between text-[10px] sm:text-xs font-mono font-bold tracking-widest uppercase text-neutral-500 mb-20 lg:mb-32">
-                <span className="flex gap-2"><span>SYSTEM ID:</span> <span className="text-neutral-900">CS_{String(project.id).padStart(3, '0')}</span></span>
-                <span className="flex gap-2"><span>TIMESTAMP:</span> <span className="text-neutral-900">2024.Q1</span></span>
-             </div>
-             {/* Title */}
-             <div>
-                <h1 className="font-helvetica-neue text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-bold tracking-tighter uppercase leading-[0.85] mb-20 lg:mb-32 max-w-4xl">
-                   {project.title}
-                </h1>
-                {/* Bottom Meta */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-[10px] sm:text-xs font-mono uppercase tracking-widest">
-                   <div className="flex flex-col gap-3">
-                     <span className="text-neutral-400">ASSIGNED ROLE</span>
-                     <span className="font-bold">LEAD DESIGNER</span>
-                   </div>
-                   <div className="flex flex-col gap-3">
-                     <span className="text-neutral-400">GEOGRAPHIC</span>
-                     <span className="font-bold">COPENHAGEN</span>
-                   </div>
-                   <div className="flex flex-col gap-3">
-                     <span className="text-neutral-400">STATE</span>
-                     <span className="font-bold">DEPLOYED</span>
-                   </div>
+
+          <div>
+            <h1 className="mb-16 max-w-4xl font-helvetica-neue text-4xl font-bold uppercase leading-[0.9] tracking-tight lg:text-7xl">
+              {project.title}
+            </h1>
+
+            <div className="grid grid-cols-3 gap-8 text-xs font-semibold uppercase tracking-widest text-neutral-500">
+              <div>
+                <span className="mb-1 block text-neutral-400">Role</span>
+                <span className="text-[#2d3334]">Lead Designer</span>
+              </div>
+              <div>
+                <span className="mb-1 block text-neutral-400">Location</span>
+                <span className="text-[#2d3334]">Remote</span>
+              </div>
+              <div>
+                <span className="mb-1 block text-neutral-400">Status</span>
+                <span className="text-porto_purple">Completed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3">
+        {/* Left Column */}
+        <div className="border-neutral-300 lg:border-r">
+          {/* Problem Statement */}
+          <motion.div
+            {...fadeIn}
+            className="border-b border-neutral-300 p-8 lg:p-12"
+          >
+            <SectionTitle>Problem Statement</SectionTitle>
+            <h3 className="mb-4 font-helvetica-neue text-2xl font-bold">
+              Overview
+            </h3>
+            <div className="font-nunito-sans leading-relaxed text-[#5a5f60]">
+              {project.description}
+            </div>
+          </motion.div>
+
+          {/* Framework & Tech */}
+          <motion.div {...fadeIn} className="p-8 lg:p-12">
+            <SectionTitle>Framework & Tech</SectionTitle>
+
+            <div className="flex flex-col gap-12">
+              <div className="mt-4">
+                <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                  Architectural Logic
+                </h4>
+                <p className="font-nunito-sans text-[#5a5f60]">
+                  Component-based architecture with emphasis on performance and
+                  scalability.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-neutral-400">
+                  System Integration
+                </h4>
+                <div className="flex flex-wrap gap-3">
+                  {(
+                    ["React", "NextJS", "Tailwind", "TypeScript"] as SkillName[]
+                  ).map((skill, index) => (
+                    <SkillCard key={skill} skill={skill} index={index} />
+                  ))}
                 </div>
-             </div>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <ActionLink href="/#projects">Source Repo</ActionLink>
+                <ActionLink href="/#projects">Live Demo</ActionLink>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right Column */}
+        <div className="lg:col-span-2">
+          {/* Visual Assets */}
+          <motion.div
+            {...fadeIn}
+            className="border-b border-neutral-300 p-8 lg:p-12"
+          >
+            <SectionTitle>Visual Assets</SectionTitle>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {[1, 2, 3, 4].map((idx) => (
+                <div key={idx} className={idx > 2 ? "hidden md:block" : ""}>
+                  <ImageWithLoading
+                    src={
+                      project.images?.[idx % project.images.length] ||
+                      `/placeholder.svg`
+                    }
+                    alt={`Asset ${idx}`}
+                    idx={idx}
+                  />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Evaluation & Analysis */}
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <motion.div
+              {...fadeIn}
+              className="border-neutral-300 p-8 md:border-r lg:p-12"
+            >
+              <SectionTitle>Evaluation</SectionTitle>
+              <blockquote className="rounded-lg border border-neutral-300 p-6">
+                <p className="mb-4 font-nunito-sans text-lg text-[#2d3334]">
+                  "A thoughtful design that prioritizes user experience through
+                  clean architecture."
+                </p>
+                <div className="flex items-center gap-3 text-xs font-semibold uppercase text-neutral-500">
+                  <div className="h-0.5 w-6 rounded-full bg-porto_purple" />
+                  <span>Client Review</span>
+                </div>
+              </blockquote>
+            </motion.div>
+
+            <motion.div {...fadeIn} className="p-8 lg:p-12">
+              <SectionTitle>Analysis</SectionTitle>
+              <div className="mb-4 rounded-lg border border-neutral-300 p-6">
+                <h4 className="mb-3 text-xs font-semibold uppercase text-neutral-400">
+                  Key Takeaways
+                </h4>
+                <p className="font-nunito-sans text-sm text-[#5a5f60]">
+                  Simplified architecture leads to better maintainability and
+                  user satisfaction.
+                </p>
+              </div>
+              <div className="flex items-center justify-between rounded-lg bg-neutral-50 px-4 py-3 text-xs font-semibold uppercase text-neutral-600">
+                <div className="flex items-center gap-3">
+                  <div className="h-2 w-2 rounded-full bg-porto_purple" />
+                  <span>Completed</span>
+                </div>
+                <span className="text-porto_purple">100%</span>
+              </div>
+            </motion.div>
           </div>
         </div>
-
-        {/* ROW 2 & 3 Combined via 2 main columns to preserve vertical line on Desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 flex-grow">
-           {/* LEFT CONTENT COLUMN */}
-           <div className={`col-span-1 border-b lg:border-b-0 lg:border-r ${BORDER} flex flex-col`}>
-              {/* 01 PROBLEM STATEMENT */}
-              <div className={`p-8 sm:p-12 border-b ${BORDER}`}>
-                 <h2 className="text-[10px] font-mono font-bold tracking-widest uppercase mb-10 flex gap-4 text-neutral-800">
-                   <span>01 //</span> <span>PROBLEM STATEMENT</span>
-                 </h2>
-                 <h3 className="text-xl sm:text-2xl font-bold mb-6 font-helvetica-neue tracking-tight uppercase">
-                   RHYTHMIC VOID / CHAOTIC URBAN GRID
-                 </h3>
-                 <div className="text-neutral-600 leading-relaxed font-nunito-sans text-sm sm:text-base [&>p]:mb-4 last:[&>p]:mb-0">
-                   {project.description}
-                 </div>
-              </div>
-              {/* 02 FRAMEWORK & TECH */}
-              <div className={`p-8 sm:p-12 flex-grow`}>
-                 <h2 className="text-[10px] font-mono font-bold tracking-widest uppercase mb-10 flex gap-4 text-neutral-800">
-                   <span>02 //</span> <span>FRAMEWORK &amp; TECH</span>
-                 </h2>
-                 
-                 <div className="mb-10">
-                   <h4 className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-neutral-400 mb-4 uppercase">ARCHITECTURAL LOGIC</h4>
-                   <p className="text-neutral-600 leading-relaxed font-nunito-sans text-sm">
-                     Cast-in-place concrete structure utilizing modular formwork for repetitive geometric execution.
-                   </p>
-                 </div>
-
-                 <div className="mb-12">
-                   <h4 className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-neutral-400 mb-4 uppercase">SYSTEM INTEGRATION</h4>
-                   <div className="grid grid-cols-4 gap-3">
-                     {icons.map((icon, i) => (
-                        <div key={i} className={`aspect-square border ${BORDER} flex items-center justify-center text-neutral-500`}>
-                          {icon}
-                        </div>
-                     ))}
-                   </div>
-                 </div>
-
-                 <div className="flex flex-col gap-3">
-                   <Link href="/#projects" className={`group flex justify-between items-center px-5 py-4 bg-[#F8F8F8] hover:bg-[#F0F0F0] transition-colors text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest border ${BORDER}`}>
-                     <span>SOURCE REPO</span>
-                     <span className="transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">{arrowIcon}</span>
-                   </Link>
-                   <Link href="/#projects" className={`group flex justify-between items-center px-5 py-4 bg-[#F8F8F8] hover:bg-[#F0F0F0] transition-colors text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest border ${BORDER}`}>
-                     <span>PROJECT NODE</span>
-                     <span className="transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">{arrowIcon}</span>
-                   </Link>
-                 </div>
-              </div>
-           </div>
-
-           {/* RIGHT CONTENT COLUMN */}
-           <div className={`col-span-2 flex flex-col`}>
-              {/* 03 VISUAL ASSETS */}
-              <div className={`p-8 sm:p-12 border-b ${BORDER}`}>
-                 <h2 className="text-[10px] font-mono font-bold tracking-widest uppercase mb-10 flex gap-4 text-neutral-800">
-                   <span>03 //</span> <span>VISUAL ASSETS</span>
-                 </h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                   {[1, 2, 3, 4].map((idx) => {
-                     const imgCount = project.images?.length || 0;
-                     const imgSrc = imgCount > 0 
-                       ? project.images![idx % imgCount] 
-                       : `https://picsum.photos/seed/${project.id * 10 + idx}/800/600`;
-                     return (
-                        <div key={idx} className={`aspect-[4/3] relative overflow-hidden bg-neutral-100 ${idx > 2 ? 'hidden md:block' : ''}`}>
-                          <img 
-                            src={imgSrc} 
-                            className="absolute inset-0 w-full h-full object-cover grayscale opacity-90 transition-transform duration-700 hover:scale-[1.03]" 
-                            alt={`Visual asset ${idx}`} 
-                          />
-                        </div>
-                     )
-                   })}
-                 </div>
-              </div>
-
-              {/* 04 & 05 (Inside Right Column) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 flex-grow">
-                 {/* 04 EVALUATION */}
-                 <div className={`p-8 sm:p-12 border-b md:border-b-0 md:border-r ${BORDER} flex flex-col`}>
-                    <h2 className="text-[10px] font-mono font-bold tracking-widest uppercase mb-10 flex gap-4 text-neutral-800">
-                      <span>04 //</span> <span>EVALUATION</span>
-                    </h2>
-                    <div className={`border ${BORDER} p-8 sm:p-10 flex-grow flex flex-col justify-between whitespace-normal`}>
-                       <p className="italic font-serif text-lg sm:text-xl leading-relaxed text-neutral-800 mb-12">
-                         "Structural honesty translated into profound emotional experience. The design commands silence without architectural overstatement."
-                       </p>
-                       <div className="flex items-center gap-4 text-[10px] font-mono font-bold tracking-widest uppercase text-neutral-700">
-                         <div className="w-8 h-[2px] bg-neutral-900"></div>
-                         <span>ELIAS THORNE // LEAD AUDITOR</span>
-                       </div>
-                    </div>
-                 </div>
-
-                 {/* 05 ANALYSIS */}
-                 <div className="p-8 sm:p-12 flex flex-col">
-                    <h2 className="text-[10px] font-mono font-bold tracking-widest uppercase mb-10 flex gap-4 text-neutral-800">
-                      <span>05 //</span> <span>ANALYSIS</span>
-                    </h2>
-                    <div className={`border ${BORDER} p-8 sm:p-10 mb-8 flex-grow`}>
-                       <h4 className="text-[10px] font-mono font-bold tracking-widest mb-6 uppercase text-neutral-900">LESSON LEARNED</h4>
-                       <p className="text-neutral-600 leading-relaxed font-nunito-sans text-sm sm:text-base">
-                         Visual simplification directly correlates with architectural impact. High complexity is best managed through strict textural variance.
-                       </p>
-                    </div>
-                    {/* Status Bar */}
-                    <div className={`border ${BORDER} px-6 py-5 flex justify-between items-center text-[10px] font-mono font-bold tracking-widest uppercase bg-[#F8F8F8] text-neutral-700 mt-auto`}>
-                       <div className="flex items-center gap-4">
-                         <div className="w-2.5 h-2.5 rounded-full bg-neutral-900 animate-pulse"></div>
-                         <span className="hidden sm:inline-block">PHASE 01: SYNTHESIS COMPLETE</span>
-                         <span className="sm:hidden">COMPLETE</span>
-                       </div>
-                       <span>100.00%</span>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-      </main>
+      </div>
 
       {/* Footer */}
-      <footer className={`flex flex-col sm:flex-row justify-between items-start sm:items-center px-6 lg:px-10 py-8 bg-[#FDFDFD] border-t ${BORDER} font-mono uppercase tracking-widest text-[10px]`}>
-        <div className="flex flex-col gap-2 mb-8 sm:mb-0">
-           <div className="font-bold text-neutral-900">THE ARCHITECT // TECHNICAL DIVISION</div>
-           <div className="text-neutral-400 text-[8px] sm:text-[10px]">AUTOMATED DOCUMENTATION SYSTEM © 2024</div>
+      <footer className="flex flex-col items-start justify-between border-t border-neutral-300 px-8 py-8 text-xs sm:flex-row sm:items-center">
+        <div className="mb-4 sm:mb-0">
+          <span className="font-bold text-[#2d3334]">Portfolio</span>
+          <span className="ml-2 text-neutral-400">© 2024</span>
         </div>
-        <div className="flex flex-wrap items-center gap-6 sm:gap-10">
-           <Link href="#" className="hover:text-black text-neutral-500 transition-colors">DIR_LI</Link>
-           <Link href="#" className="hover:text-black text-neutral-500 transition-colors">DIR_IG</Link>
-           <Link href="#" className="hover:text-black text-neutral-500 transition-colors">DIR_BE</Link>
-           <button onClick={() => router.push("/#projects")} className={`border ${BORDER} px-6 py-3 hover:bg-[#F8F8F8] text-neutral-900 transition-colors hidden sm:block`}>
-             BACK TO ROOT
-           </button>
+        <div className="flex gap-6">
+          <Link
+            href="#"
+            className="text-neutral-500 transition-colors hover:text-porto_purple"
+          >
+            LinkedIn
+          </Link>
+          <Link
+            href="#"
+            className="text-neutral-500 transition-colors hover:text-porto_purple"
+          >
+            GitHub
+          </Link>
+          <button
+            onClick={() => router.push("/#projects")}
+            className="text-[#2d3334] transition-colors hover:text-porto_purple"
+          >
+            Back
+          </button>
         </div>
       </footer>
     </motion.div>
+  );
+}
+
+// Helper Components
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-6 flex items-center gap-3">
+      <div className="h-8 w-2 rounded-full bg-porto_purple" />
+      <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-500">
+        {children}
+      </h2>
+    </div>
+  );
+}
+
+function ActionLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center justify-between rounded-lg border border-neutral-300 bg-neutral-50 px-5 py-4 text-xs font-semibold uppercase tracking-widest transition-all hover:border-porto_purple hover:bg-porto_purple hover:text-white"
+    >
+      <span>{children}</span>
+      <span>→</span>
+    </Link>
   );
 }
