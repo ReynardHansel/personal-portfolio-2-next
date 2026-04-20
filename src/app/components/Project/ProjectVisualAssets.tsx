@@ -44,7 +44,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function AssetCarousel({ images }: { images: string[] }) {
   return (
-    <Carousel opts={{ align: "start" }} className="w-full">
+    <Carousel opts={{ align: "start" }} className="w-full px-4">
       <CarouselContent>
         {Array.from({
           length: Math.ceil(images.length / 4),
@@ -68,9 +68,9 @@ function AssetCarousel({ images }: { images: string[] }) {
       </CarouselContent>
 
       {images.length > 4 && (
-        <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 justify-center gap-4">
-          <CarouselPrevious />
-          <CarouselNext />
+        <div className="hidden md:block">
+          <CarouselPrevious className="-left-8" />
+          <CarouselNext className="-right-8" />
         </div>
       )}
     </Carousel>
