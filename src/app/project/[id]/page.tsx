@@ -12,6 +12,7 @@ import ProjectFrameworkTech from "@/app/components/Project/ProjectFrameworkTech"
 import ProjectVisualAssets from "@/app/components/Project/ProjectVisualAssets";
 import ProjectEvaluation from "@/app/components/Project/ProjectEvaluation";
 import ProjectAnalysis from "@/app/components/Project/ProjectAnalysis";
+import ProjectFooter from "@/app/components/Project/ProjectFooter";
 
 export default function ProjectPage() {
   const { id } = useParams();
@@ -62,51 +63,7 @@ export default function ProjectPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="flex flex-col items-start justify-between border-t border-neutral-300 px-8 py-8 text-xs sm:flex-row sm:items-center">
-        <div className="mb-4 sm:mb-0">
-          Copyright © 2024 - Reynard Hansel
-        </div>
-        <div className="flex gap-4" id="next-prev">
-          <Button
-            variant="outline"
-            size="sm"
-            disabled={projectIndex <= 0}
-            asChild={projectIndex > 0}
-          >
-            {projectIndex > 0 ? (
-              <Link href={`/project/${projectIndex}`}>
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Previous
-              </Link>
-            ) : (
-              <>
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Previous
-              </>
-            )}
-          </Button>
-          <Button
-            variant="outline"
-            className="hover:bg-porto_purple hover:text-broken_white"
-            size="sm"
-            disabled={projectIndex >= projectsBento.length - 1}
-            asChild={projectIndex < projectsBento.length - 1}
-          >
-            {projectIndex < projectsBento.length - 1 ? (
-              <Link href={`/project/${projectIndex + 2}`}>
-                Next
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            ) : (
-              <>
-                Next
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </>
-            )}
-          </Button>
-        </div>
-      </footer>
+      <ProjectFooter projectIndex={projectIndex} />      
     </motion.div>
   );
 }
