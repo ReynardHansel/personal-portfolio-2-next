@@ -98,7 +98,7 @@ function ImageWithLoading({
       <Image
         src={src}
         fill
-        className="object-cover transition-transform duration-500 hover:scale-105"
+        className="object-cover"
         alt={alt}
         onLoad={() => setIsLoading(false)}
       />
