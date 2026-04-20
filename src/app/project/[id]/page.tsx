@@ -2,8 +2,10 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projectsBento } from "@/data/projects_bento";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import ProjectHero from "@/app/components/Project/ProjectHero";
 import ProjectProblemStatement from "@/app/components/Project/ProjectProblemStatement";
 import ProjectFrameworkTech from "@/app/components/Project/ProjectFrameworkTech";
@@ -63,28 +65,46 @@ export default function ProjectPage() {
       {/* Footer */}
       <footer className="flex flex-col items-start justify-between border-t border-neutral-300 px-8 py-8 text-xs sm:flex-row sm:items-center">
         <div className="mb-4 sm:mb-0">
-          <span className="font-bold text-[#2d3334]">Portfolio</span>
-          <span className="ml-2 text-neutral-400">© 2024</span>
+          Copyright © 2024 - Reynard Hansel
         </div>
-        <div className="flex gap-6">
-          <Link
-            href="#"
-            className="text-neutral-500 transition-colors hover:text-porto_purple"
+        <div className="flex gap-4" id="next-prev">
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={projectIndex <= 0}
+            asChild={projectIndex > 0}
           >
-            LinkedIn
-          </Link>
-          <Link
-            href="#"
-            className="text-neutral-500 transition-colors hover:text-porto_purple"
+            {projectIndex > 0 ? (
+              <Link href={`/project/${projectIndex}`}>
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Previous
+              </Link>
+            ) : (
+              <>
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Previous
+              </>
+            )}
+          </Button>
+          <Button
+            variant="outline"
+            className="hover:bg-porto_purple hover:text-broken_white"
+            size="sm"
+            disabled={projectIndex >= projectsBento.length - 1}
+            asChild={projectIndex < projectsBento.length - 1}
           >
-            GitHub
-          </Link>
-          <button
-            onClick={() => router.push("/#projects")}
-            className="text-[#2d3334] transition-colors hover:text-porto_purple"
-          >
-            Back
-          </button>
+            {projectIndex < projectsBento.length - 1 ? (
+              <Link href={`/project/${projectIndex + 2}`}>
+                Next
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Link>
+            ) : (
+              <>
+                Next
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </>
+            )}
+          </Button>
         </div>
       </footer>
     </motion.div>
