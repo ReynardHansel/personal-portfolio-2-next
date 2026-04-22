@@ -11,6 +11,7 @@ interface ProjectBentoData {
   year: string;
   type: "Individual" | "Team";
   skills: SkillName[];
+  problemStatement: string;
   architecturalLogic: string[];
   quote: string;
   quoteAuthor: string;
@@ -39,6 +40,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "Completed",
     year: "2024",
     type: "Team",
+    problemStatement:
+      "BNCC needed a high-traffic event website that could handle thousands of concurrent visitors on multiple devices, while the dev team had varying skill levels with no shared framework experience.",
     skills: ["HTML", "CSS", "Tailwind", "Figma", "Git", "GitHub"],
     architecturalLogic: [
       "Prioritizing responsiveness so that it could reach as many audience as possible no matter what device they may be using",
@@ -77,6 +80,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "Completed",
     year: "2023",
     type: "Individual",
+    problemStatement:
+      "Existing e-commerce platforms were difficult to customize and lacked real-time inventory visibility. A custom-built solution was needed to handle live stock tracking and multiple payment providers seamlessly.",
     skills: ["NextJS", "TypeScript", "PostgreSQL", "Tailwind"],
     architecturalLogic: [
       "Microservices architecture with API-first design. PostgreSQL for data persistence with Prisma ORM for type-safe database access.",
@@ -108,6 +113,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "Deployed",
     year: "2023",
     type: "Individual",
+    problemStatement:
+      "Users needed a cross-platform task manager that works offline and syncs when back online. Most solutions either required constant internet or had poor sync conflict resolution.",
     skills: ["Flutter", "SQL", "Figma"],
     architecturalLogic: [
       "Clean architecture with BLoC pattern for state management.",
@@ -141,6 +148,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "Completed",
     year: "2024",
     type: "Individual",
+    problemStatement:
+      "Stakeholders were buried under static spreadsheet reports and manual data analysis. A dynamic dashboard was needed to surface insights instantly and reduce decision latency.",
     skills: ["React", "Motion", "Figma", "TypeScript"],
     architecturalLogic: [
       "Recharts library for data visualization with custom theming.",
@@ -171,6 +180,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "In Progress",
     year: "2024",
     type: "Individual",
+    problemStatement:
+      "Multi-tenant SaaS platforms often suffer from data isolation issues and complex billing logic. The product needed to enforce row-level security while supporting flexible subscription tiers.",
     skills: ["NextJS", "PostgreSQL", "Prisma", "TypeScript"],
     architecturalLogic: [
       "Serverless architecture using Next.js API routes.",
@@ -203,6 +214,8 @@ export const projectsBento: ProjectBentoData[] = [
     status: "Completed",
     year: "2023",
     type: "Individual",
+    problemStatement:
+      "Brand assets were scattered across tools and individuals with no shared reference. Inconsistent output was slowing down both pitch and production workflows across the organization.",
     skills: ["Figma", "Motion"],
     architecturalLogic: [
       "Design system built on atomic design principles.",
