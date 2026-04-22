@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import SkillCard from "@/app/components/Skillset/SkillCard";
 import { projectsBento } from "@/data/projects_bento";
 import SectionLabel from "./SectionLabel";
@@ -45,16 +46,8 @@ export default function ProjectFrameworkTech({
         </div>
 
         <div className="flex flex-col gap-3">
-          {project.sourceRepo ? (
-            <ActionLink href={project.sourceRepo}>Source Repo</ActionLink>
-          ) : (
-            <ActionLink href="/#projects">Source Repo</ActionLink>
-          )}
-          {project.liveDemo ? (
-            <ActionLink href={project.liveDemo}>Live Demo</ActionLink>
-          ) : (
-            <ActionLink href="/#projects">Live Demo</ActionLink>
-          )}
+          <ActionLink href={project.sourceRepo}>Source Repo</ActionLink>
+          <ActionLink href={project.liveDemo}>Live Demo</ActionLink>
         </div>
       </div>
     </motion.div>
@@ -65,12 +58,34 @@ function ActionLink({
   href,
   children,
 }: {
-  href: string;
+  href: string | undefined;
   children: React.ReactNode;
 }) {
+  const isPrivate = href === "private";
+  const isUnavailable = href === "unavailable";
+  const isDisabled = isPrivate || isUnavailable;
+
+  const label = isPrivate ? "Private" : isUnavailable ? "Unavailable" : href;
+
+  if (isDisabled) {
+    return (
+      <Button
+        variant="outline"
+        disabled
+        className="flex w-full items-center justify-between border-neutral-300 bg-neutral-50 px-5 py-4 text-xs font-semibold uppercase tracking-widest text-neutral-400"
+      >
+        <span className="flex items-center gap-2">
+          <span>{children}</span>
+          <span className="text-[10px] opacity-60">({label})</span>
+        </span>
+        <span className="opacity-40">⊘</span>
+      </Button>
+    );
+  }
+
   return (
     <Link
-      href={href}
+      href={href || "/#projects"}
       className="flex items-center justify-between rounded-lg border border-neutral-300 bg-neutral-50 px-5 py-4 text-xs font-semibold uppercase tracking-widest transition-all hover:border-porto_purple hover:bg-porto_purple hover:text-white"
     >
       <span>{children}</span>
