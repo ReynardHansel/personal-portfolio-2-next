@@ -9,43 +9,59 @@ interface ProjectBentoData {
   location: string;
   status: "Completed" | "Deployed" | "In Progress" | "Archived";
   year: string;
+  type: "Individual" | "Team";
   skills: SkillName[];
-  architecturalLogic: string;
+  architecturalLogic: string[];
   quote: string;
   quoteAuthor: string;
-  keyTakeaways: string;
-  sourceRepo?: string;
-  liveDemo?: string;
+  keyTakeaways: string[];
+  sourceRepo?: string | "private";
+  liveDemo?: string | "unavailable";
 }
 
 export const projectsBento: ProjectBentoData[] = [
   {
     id: 1,
-    title: "Portfolio Redesign",
+    title: "Technoscape Summit 2024",
     description:
-      "A comprehensive redesign of a personal portfolio website, focusing on minimal design principles and seamless user experience across all devices.",
+      'A website for the 1st out of 3 major events "Technoscape" held by BNCC.',
     images: [
-      "https://picsum.photos/seed/1/800/800",
-      "https://picsum.photos/seed/12/800/600",
-      "https://picsum.photos/seed/13/800/600",
-      "https://picsum.photos/seed/14/800/600",
+      "/images/projects/technoscape/1.png",
+      "/images/projects/technoscape/2.png",
+      "/images/projects/technoscape/3.png",
+      "/images/projects/technoscape/4.png",
+      "/images/projects/technoscape/5.png",
+      "/images/projects/technoscape/6.png",
+      "/images/projects/technoscape/7.png",
     ],
-    role: "Lead Designer",
-    location: "Remote",
+    role: "Frontend Developer",
+    location: "Bandung & Jakarta",
     status: "Completed",
     year: "2024",
-    skills: ["React", "NextJS", "Tailwind", "TypeScript"],
-    architecturalLogic:
-      "Component-based architecture with emphasis on performance and scalability. Built using modern React patterns with server-side rendering for optimal SEO.",
+    type: "Team",
+    skills: ["HTML", "CSS", "Tailwind", "Figma", "Git", "GitHub"],
+    architecturalLogic: [
+      "Prioritizing responsiveness so that it could reach as many audience as possible no matter what device they may be using",
+      "Built with vanilla HTML and JS, using only TailwindCSS as a library, to match with each dev's skill level",
+      "Heavy in absolute-positioning for the visual elements, sizing and anchoring them to the viewport or parent container so as to not break in any screen size",
+    ],
     quote:
-      "A thoughtful design that prioritizes user experience through clean architecture.",
-    quoteAuthor: "Client Review",
-    keyTakeaways:
-      "Simplified architecture leads to better maintainability and user satisfaction. Clear separation of concerns allows for easier iteration.",
+      "I don't even know how you managed to make that and all those elements without any frameworks!",
+    quoteAuthor: "Rafael Marvin",
+    keyTakeaways: [
+      'Styling multiple elements in "everywhere" requires a dynamic sizing and placing of absolute-positioned elements. Whether it be using viewport units or percentage, it is important to consider the constraints of the parent container.',
+      "For a big project/event that has a clear deadline and promises to sponsors, it is crucial to have a clear communication with the whole team, and having a scrum meeting once a week helps to keep everyone accountable and on the same page.",
+      "It is also important to have a clear division of labor within the team, and to have a clear understanding of each member's responsibilities. This helps to ensure no confusion, misunderstanding, or miscommunication.",
+    ],
+    sourceRepo: "private",
+    liveDemo: "unavailable",
   },
+  //? NOT DONE
+  //! STOP
+
   {
     id: 2,
-    title: "E-Commerce Platform",
+    title: "BNCC Bandung Showcase",
     description:
       "A full-stack e-commerce solution with real-time inventory management, payment processing, and an intuitive admin dashboard.",
     images: [
@@ -60,14 +76,18 @@ export const projectsBento: ProjectBentoData[] = [
     location: "Copenhagen",
     status: "Completed",
     year: "2023",
+    type: "Individual",
     skills: ["NextJS", "TypeScript", "PostgreSQL", "Tailwind"],
-    architecturalLogic:
+    architecturalLogic: [
       "Microservices architecture with API-first design. PostgreSQL for data persistence with Prisma ORM for type-safe database access.",
+    ],
     quote:
       "The platform handles thousands of concurrent users with impressive uptime and performance metrics.",
     quoteAuthor: "Tech Lead Review",
-    keyTakeaways:
-      "Optimized database queries reduced load times by 60%. Effective caching strategies improved overall system responsiveness.",
+    keyTakeaways: [
+      "Optimized database queries reduced load times by 60%.",
+      "Effective caching strategies improved overall system responsiveness.",
+    ],
   },
   {
     id: 3,
@@ -87,14 +107,19 @@ export const projectsBento: ProjectBentoData[] = [
     location: "Berlin",
     status: "Deployed",
     year: "2023",
+    type: "Individual",
     skills: ["Flutter", "SQL", "Figma"],
-    architecturalLogic:
-      "Clean architecture with BLoC pattern for state management. Local database for offline functionality with cloud sync capabilities.",
+    architecturalLogic: [
+      "Clean architecture with BLoC pattern for state management.",
+      "Local database for offline functionality with cloud sync capabilities.",
+    ],
     quote:
       "The app maintains a 4.8-star rating with over 50,000 active users praising its intuitive interface.",
     quoteAuthor: "Product Manager",
-    keyTakeaways:
-      "Extensive user testing revealed key usability improvements. Progressive Web App fallback ensured accessibility on all devices.",
+    keyTakeaways: [
+      "Extensive user testing revealed key usability improvements.",
+      "Progressive Web App fallback ensured accessibility on all devices.",
+    ],
   },
   {
     id: 4,
@@ -115,14 +140,19 @@ export const projectsBento: ProjectBentoData[] = [
     location: "Amsterdam",
     status: "Completed",
     year: "2024",
+    type: "Individual",
     skills: ["React", "Motion", "Figma", "TypeScript"],
-    architecturalLogic:
-      "Recharts library for data visualization with custom theming. Optimized re-renders using React.memo and strategic state management.",
+    architecturalLogic: [
+      "Recharts library for data visualization with custom theming.",
+      "Optimized re-renders using React.memo and strategic state management.",
+    ],
     quote:
       "Interactive charts and smooth animations make complex data instantly comprehensible.",
     quoteAuthor: "Executive Review",
-    keyTakeaways:
-      "Performance optimizations allowed real-time updates without frame drops. Accessibility compliance reached WCAG 2.1 AA standards.",
+    keyTakeaways: [
+      "Performance optimizations allowed real-time updates without frame drops.",
+      "Accessibility compliance reached WCAG 2.1 AA standards.",
+    ],
   },
   {
     id: 5,
@@ -140,14 +170,19 @@ export const projectsBento: ProjectBentoData[] = [
     location: "Remote",
     status: "In Progress",
     year: "2024",
+    type: "Individual",
     skills: ["NextJS", "PostgreSQL", "Prisma", "TypeScript"],
-    architecturalLogic:
-      "Serverless architecture using Next.js API routes. Multi-tenancy handled at database level with row-level security policies.",
+    architecturalLogic: [
+      "Serverless architecture using Next.js API routes.",
+      "Multi-tenancy handled at database level with row-level security policies.",
+    ],
     quote:
       "Modern stack choices ensure maintainability while supporting enterprise-scale requirements.",
     quoteAuthor: "Architecture Review",
-    keyTakeaways:
-      "Early security considerations prevented major refactoring. API versioning strategy allows graceful upgrades.",
+    keyTakeaways: [
+      "Early security considerations prevented major refactoring.",
+      "API versioning strategy allows graceful upgrades.",
+    ],
   },
   {
     id: 6,
@@ -167,13 +202,18 @@ export const projectsBento: ProjectBentoData[] = [
     location: "London",
     status: "Completed",
     year: "2023",
+    type: "Individual",
     skills: ["Figma", "Motion"],
-    architecturalLogic:
-      "Design system built on atomic design principles. Each component documented with usage guidelines and accessibility notes.",
+    architecturalLogic: [
+      "Design system built on atomic design principles.",
+      "Each component documented with usage guidelines and accessibility notes.",
+    ],
     quote:
       "Cohesive brand identity that scales from startup pitch deck to enterprise collateral.",
     quoteAuthor: "Creative Director",
-    keyTakeaways:
-      "Systematic approach reduced design inconsistency by 80%. Clear guidelines accelerated onboarding for new team members.",
+    keyTakeaways: [
+      "Systematic approach reduced design inconsistency by 80%.",
+      "Clear guidelines accelerated onboarding for new team members.",
+    ],
   },
 ];

@@ -20,9 +20,17 @@ export default function ProjectFrameworkTech({
           <h4 className="mb-3 text-xs font-semibold uppercase tracking-widest text-neutral-400">
             Architectural Logic
           </h4>
-          <p className="font-nunito-sans text-[#5a5f60]">
-            {project.architecturalLogic}
-          </p>
+          {project.architecturalLogic.length > 1 ? (
+            <ul className="flex list-disc flex-col gap-2 pl-5 font-nunito-sans text-[#5a5f60]">
+              {project.architecturalLogic.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="font-nunito-sans text-[#5a5f60]">
+              {project.architecturalLogic[0]}
+            </p>
+          )}
         </div>
 
         <div>
