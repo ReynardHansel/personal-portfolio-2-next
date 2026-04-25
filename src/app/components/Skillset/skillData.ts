@@ -28,6 +28,7 @@ const skillData = [
   { name: "Flutter", icon: `${logoPath}flutter.svg`, color: "#02569B" },
   { name: "Confluence", icon: `${logoPath}confluence.svg`, color: "#2684FF" },
   { name: "Miro", icon: `${logoPath}miro.svg`, color: "#FFD02F" },
+  { name: "Zod", icon: `${logoPath}zod.svg`, color: "#408AFF" },
 ] as const;
 
 export type SkillName = (typeof skillData)[number]["name"];
