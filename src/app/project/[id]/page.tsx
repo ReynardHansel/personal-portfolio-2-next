@@ -7,7 +7,7 @@ import { projectsBento } from "@/data/projects_bento";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ProjectHero from "@/app/components/Project/ProjectHero";
-import ProjectProblemStatement from "@/app/components/Project/ProjectProblemStatement";
+import ProjectProblemStatement from "@/app/components/Project/ProjectOverview";
 import ProjectFrameworkTech from "@/app/components/Project/ProjectFrameworkTech";
 import ProjectVisualAssets from "@/app/components/Project/ProjectVisualAssets";
 import ProjectEvaluation from "@/app/components/Project/ProjectEvaluation";
