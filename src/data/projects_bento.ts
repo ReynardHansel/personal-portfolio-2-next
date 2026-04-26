@@ -291,5 +291,3 @@ export const projectsBento: ProjectBentoData[] = [
   },
 ];
 //* DONE
-
-// feat(proj): Update projects data with real data
