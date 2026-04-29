@@ -18,6 +18,8 @@ interface ProjectBentoData {
     author: string;
     type?: "good" | "bad" | "neutral";
   }[];
+  heightType: "short" | "medium" | "tall";
+  layout: "large" | "medium" | "small";
   keyTakeaways: string[];
   sourceRepo: string | "private";
   liveDemo: string | "unavailable";
@@ -66,6 +68,8 @@ export const projectsBento: ProjectBentoData[] = [
     ],
     sourceRepo: "private",
     liveDemo: "unavailable",
+    heightType: "medium",
+    layout: "medium",
   },
   //* DONE
 
@@ -131,6 +135,8 @@ export const projectsBento: ProjectBentoData[] = [
     ],
     sourceRepo: "https://github.com/Lunardy2509/Ripely",
     liveDemo: "https://apps.apple.com/id/app/ripely/id6747743774",
+    heightType: "tall",
+    layout: "medium",
   },
   //* DONE
 
@@ -190,6 +196,8 @@ export const projectsBento: ProjectBentoData[] = [
     ],
     sourceRepo: "private",
     liveDemo: "https://showcasebdg.bncc.net/",
+    heightType: "medium",
+    layout: "large",
   },
   //* DONE
 
@@ -236,6 +244,8 @@ export const projectsBento: ProjectBentoData[] = [
     ],
     sourceRepo: "private",
     liveDemo: "https://gycc-2-support.netlify.app/",
+    heightType: "short",
+    layout: "medium",
   },
   //* DONE
 
@@ -288,6 +298,8 @@ export const projectsBento: ProjectBentoData[] = [
     ],
     sourceRepo: "private",
     liveDemo: "https://quizai.rey.mba/",
+    heightType: "short",
+    layout: "medium",
   },
 ];
 //* DONE
