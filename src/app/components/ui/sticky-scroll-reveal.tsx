@@ -1,14 +1,16 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const StickyScroll = ({
   content,
   contentClassName,
 }: {
   content: {
+    id: number;
     title: string;
     description: string | React.ReactNode;
     content?: React.ReactNode | any;
@@ -52,13 +54,7 @@ export const StickyScroll = ({
     "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
   ];
 
-  const [backgroundGradient, setBackgroundGradient] = useState(
-    linearGradients[0],
-  );
-
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
+  const [backgroundGradient] = useState(linearGradients[0]);
 
   return (
     <div className="flex flex-col items-center">
@@ -66,18 +62,39 @@ export const StickyScroll = ({
       <div
         // style={{ background: backgroundGradient }}
         className={cn(
-          "sticky top-10 min-h-fit max-w-full w-[85%] sm:w-[80%] overflow-hidden rounded-md bg-white lg:hidden",
+          "sticky top-10 min-h-fit w-[85%] max-w-full overflow-hidden rounded-md bg-white sm:w-[80%] lg:hidden",
           contentClassName,
         )}
       >
         {content[activeCard].content ?? null}
+        {/* View Details Link */}
+        <Link
+          href={`/project/${content[activeCard].id}`}
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-porto_purple px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-porto_purple/90"
+        >
+          View Details
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </Link>
       </div>
 
       <motion.div
         // animate={{
         //   backgroundColor: backgroundColors[activeCard % backgroundColors.length],
         // }}
-        className="relative my-[3.5vh] md:my-[6vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[5vw] sm:px-[8vw] md:px-[10vw] [&::-webkit-scrollbar]:hidden"
+        className="relative my-[3.5vh] flex h-[80vh] w-screen items-start justify-between space-x-10 overflow-y-auto rounded-md px-[5vw] sm:px-[8vw] md:my-[6vh] md:px-[10vw] [&::-webkit-scrollbar]:hidden"
         ref={ref}
       >
         <div className="div relative flex items-start px-4">
@@ -105,7 +122,7 @@ export const StickyScroll = ({
                   animate={{
                     opacity: activeCard === index ? 1 : 0.3,
                   }}
-                  className="mt-7 lg:mt-10 flex flex-col gap-9 font-plus-jakarta-sans text-base tracking-wide text-gray-700 lg:max-w-md xl:max-w-xl xl:text-lg"
+                  className="mt-7 flex flex-col gap-9 font-plus-jakarta-sans text-base tracking-wide text-gray-700 lg:mt-10 lg:max-w-md xl:max-w-xl xl:text-lg"
                 >
                   {item.description}
                 </motion.div>
@@ -119,11 +136,32 @@ export const StickyScroll = ({
         <div
           // style={{ background: backgroundGradient }}
           className={cn(
-            "sticky top-0 hidden min-h-fit w-[45vw] overflow-hidden rounded-md bg-white lg:block",
+            "sticky top-0 hidden min-h-fit w-[45vw] flex-col overflow-hidden rounded-md bg-white lg:flex",
             contentClassName,
           )}
         >
           {content[activeCard].content ?? null}
+          {/* View Details Link */}
+          <Link
+            href={`/project/${content[activeCard].id}`}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-porto_purple px-6 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-porto_purple/90"
+          >
+            View Details
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </motion.div>
     </div>
