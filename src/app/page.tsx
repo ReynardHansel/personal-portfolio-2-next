@@ -10,17 +10,19 @@ import Skillset from "./components/Skillset";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center overflow-x-clip bg-white">
-      <Navbar />
-      {/* <Hero /> */}
-      {/* <About /> */}
-      <HeroAbout />
-      <Skillset />
-      <Experience />
-      <Projects_Bento />
-      {/* <UnderDevelopment /> */}
-      <Contact />
+    <>
+      <div className="flex flex-col items-center gap-[25vh] overflow-x-clip bg-white">
+        <Navbar />
+        {/* <Hero /> */}
+        {/* <About /> */}
+        <HeroAbout />
+        <Skillset />
+        <Experience />
+        <Projects_Bento />
+        {/* <UnderDevelopment /> */}
+        <Contact />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
