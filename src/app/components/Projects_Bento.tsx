@@ -118,7 +118,7 @@ export function BentoGrid() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center gap-[5vh] py-[7vh]">
       <Title>Featured Projects</Title>
-      <div className="grid w-full max-w-6xl grid-flow-dense auto-rows-[200px] grid-cols-1 gap-4 p-4 md:grid-cols-4">
+      <div className="grid w-full max-w-[80vw] grid-flow-dense auto-rows-[200px] grid-cols-1 gap-4 p-4 md:grid-cols-4">
         {projectsBento.map((project) => (
           <ProjectCard
             key={project.id}
