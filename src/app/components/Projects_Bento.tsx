@@ -51,14 +51,17 @@ function ProjectCard({
     <motion.div
       className={cn(
         "group relative w-full overflow-hidden rounded-xl",
-        layoutClassName
+        layoutClassName,
       )}
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link href={`/project/${project.id}`} className="relative flex h-full w-full">
+      <Link
+        href={`/project/${project.id}`}
+        className="relative flex h-full w-full"
+      >
         {/* Image */}
         <motion.div
           className="absolute inset-0"
@@ -75,35 +78,34 @@ function ProjectCard({
 
         {/* Gradient overlay */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.3 }}
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/40" />
 
-        {/* Title text */}
-        <motion.h3
-          className="absolute bottom-0 left-0 right-0 p-4 font-semibold text-white"
-          animate={{ y: isHovered ? -24 : 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          {project.title}
-        </motion.h3>
+        {/* TEXTS */}
+        <div className="absolute bottom-0 left-0 right-0 ml-1 p-4">
+          {/* Title text */}
+          <h3 className="font-semibold text-white">
+            {project.title}
+          </h3>
 
-        {/* Description text */}
-        <motion.p
-          className="absolute bottom-0 left-0 right-0 p-4 text-sm text-white/80"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{
-            y: isHovered ? 0 : 20,
-            opacity: isHovered ? 1 : 0,
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        >
-          {project.description}
-        </motion.p>
+          {/* Description text */}
+          <motion.p
+            className="pt-1 text-sm text-white/80"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: isHovered ? "auto" : 0,
+              opacity: isHovered ? 1 : 0,
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {project.description}
+          </motion.p>
+        </div>
       </Link>
     </motion.div>
   );
@@ -116,7 +118,7 @@ export function BentoGrid() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center gap-[5vh] py-[7vh]">
       <Title>Featured Projects</Title>
-      <div className="grid w-full max-w-6xl grid-cols-1 gap-4 auto-rows-[200px] grid-flow-dense p-4 md:grid-cols-4">
+      <div className="grid w-full max-w-6xl grid-flow-dense auto-rows-[200px] grid-cols-1 gap-4 p-4 md:grid-cols-4">
         {projectsBento.map((project) => (
           <ProjectCard
             key={project.id}
@@ -148,7 +150,7 @@ function MasonryLayout() {
             project={project}
             layoutClassName={cn(
               "mb-4 w-full overflow-hidden rounded-xl",
-              HEIGHT_MAP[project.heightType]
+              HEIGHT_MAP[project.heightType],
             )}
           />
         ))}
@@ -163,4 +165,3 @@ function MasonryLayout() {
 export default function Projects_Bento() {
   return <BentoGrid />;
 }
-
