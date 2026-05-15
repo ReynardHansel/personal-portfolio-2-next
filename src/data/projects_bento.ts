@@ -50,7 +50,7 @@ export const projectsBento: ProjectBentoData[] = [
     skills: ["HTML", "CSS", "JavaScript", "Tailwind", "Figma", "Git", "GitHub"],
     architecturalLogic: [
       "Prioritizing responsiveness so that it could reach as many audience as possible no matter what device they may be using",
-      "Built with vanilla HTML and JS, using only TailwindCSS as a library, to match with each dev's skill level",
+      "Built with vanilla HTML and JS, using only TailwindCSS as a library, to match with each dev's skill level and achieve fast page load",
       "Heavy in absolute-positioning for the visual elements, sizing and anchoring them to the viewport or parent container so as to not break in any screen size",
     ],
     quotes: [
