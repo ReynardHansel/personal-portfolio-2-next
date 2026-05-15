@@ -10,7 +10,7 @@ import Skillset from "./components/Skillset";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center overflow-x-clip bg-white">
+    <div className="flex flex-col items-center overflow-x-clip bg-white gap-[25vh]">
       <Navbar />
       {/* <Hero /> */}
       {/* <About /> */}
